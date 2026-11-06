@@ -1,13 +1,11 @@
-# Holperfrei: elevator pitch
+Have you ever been in your car or on the bus with your morning coffee, and suddenly a pothole spills it all over you?
 
-Every winter, Dresden's roads break, and the city finds the damage too late. Inspectors drive around by hand, so each street gets checked only now and then, and a small crack becomes an expensive pothole.
+That happens because the city finds road damage too late. In Dresden, inspectors check each street only now and then, so a small crack slowly becomes a big pothole.
 
-We noticed that garbage trucks already drive through every street, every week. So we want to put a small camera on some of them. Our AI finds cracks and potholes, ranks how dangerous they are, and gives the city a weekly damage map, with no extra staff and no extra vehicles.
+We’re Holperfrei, computer science students from TU Dresden. Garbage trucks already drive through every street, every week. We put a small camera on them, and our AI finds cracks and potholes, ranks how dangerous they are, and gives the city a weekly damage map. No extra staff, no extra vehicles.
 
-Cities pay a yearly subscription per kilometre of road, and we start with a pilot here in Dresden.
+Cities pay a yearly subscription per kilometre of road. Now we’re looking for a pilot district in Dresden and a fleet partner.
+
+So whether you drive or take the bus, your next coffee stays in the cup.
 
 We are Holperfrei: we find potholes before you do.
-
-## Positioning
-
-For city road departments who find road damage too late, Holperfrei is an AI road-monitoring service that checks every street every week using cameras on garbage trucks. Unlike manual inspection drives, it needs no extra staff or vehicles and catches cracks before they become potholes.
