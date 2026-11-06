@@ -1,0 +1,1030 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Customer Journey Canvas: AIPot</title>
+    <style>
+        :root {
+            color-scheme: light;
+            --foreground: #202923;
+            --muted: #667269;
+            --card: #fff;
+            --border: #9da89f;
+            --primary: #4e8550;
+            --radius: 10px;
+            --font-sans: Arial, Helvetica, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: var(--font-sans);
+            color: var(--foreground);
+            line-height: 1.45;
+        }
+
+        main {
+            max-width: 2400px;
+            margin: auto;
+            padding: 32px;
+        }
+
+        .paper {
+            background: #fff;
+            padding: 16px;
+            border-radius: var(--radius);
+        }
+
+        .top {
+            display: grid;
+            grid-template-columns: 1.7fr 1.25fr 1.05fr .65fr;
+            gap: 20px;
+            align-items: start;
+            margin-bottom: 24px;
+        }
+
+        h1 {
+            font-size: 34px;
+            line-height: 1.08;
+            letter-spacing: -1px;
+            font-style: italic;
+            color: var(--primary);
+            margin: 0 0 10px;
+        }
+
+        .subtitle {
+            color: var(--muted);
+            font-size: 14px;
+            margin: 0;
+        }
+
+        .meta {
+            border: 1px solid #cbd2cd;
+            min-height: 72px;
+            padding: 9px 11px;
+            font-size: 13px;
+        }
+
+        .meta span {
+            display: block;
+            font-size: 11px;
+            color: var(--muted);
+            margin-bottom: 5px;
+        }
+
+        .meta strong {
+            font-weight: 600;
+        }
+
+        .status {
+            display: inline-block;
+            font-size: 11px;
+            padding: 2px 6px;
+            background: #eef4eb;
+            color: #446444;
+            border: 1px solid #ceddcc;
+            border-radius: 3px;
+            margin-top: 8px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1.04fr 1.09fr;
+            grid-template-rows: minmax(318px, auto) minmax(305px, auto) minmax(225px, auto);
+            border-left: 1px solid var(--border);
+            border-top: 1px solid var(--border);
+        }
+
+        .cell {
+            min-width: 0;
+            padding: 20px 18px;
+            border-right: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .task {
+            grid-column: 1;
+            grid-row: 1;
+        }
+
+        .avoid {
+            grid-column: 2;
+            grid-row: 1;
+        }
+
+        .needs {
+            grid-column: 3;
+            grid-row: 1;
+        }
+
+        .benefit {
+            grid-column: 4;
+            grid-row: 1;
+        }
+
+        .vision {
+            grid-column: 1;
+            grid-row: 2;
+        }
+
+        .if {
+            grid-column: 2;
+            grid-row: 2;
+        }
+
+        .advantages {
+            grid-column: 3;
+            grid-row: 2;
+        }
+
+        .reduction {
+            grid-column: 4;
+            grid-row: 2;
+        }
+
+        .vision-sentence {
+            grid-column: 1;
+            grid-row: 3;
+        }
+
+        .impact {
+            grid-column: 2;
+            grid-row: 3;
+        }
+
+        .objectives {
+            grid-column: 3;
+            grid-row: 3;
+        }
+
+        .clarify {
+            grid-column: 4;
+            grid-row: 3;
+        }
+
+        .updates {
+            grid-column: 5;
+            grid-row: 1/4;
+            background: #f7faf6;
+        }
+
+        .cell-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 8px;
+        }
+
+        h2 {
+            font-size: 21px;
+            line-height: 1.15;
+            margin: 0;
+            font-style: italic;
+            letter-spacing: -.4px;
+        }
+
+        .cell-head svg {
+            width: 26px;
+            height: 26px;
+            flex-shrink: 0;
+            stroke: #758779;
+            fill: none;
+            stroke-width: 1.4;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .prompt {
+            color: #658366;
+            font-size: 11px;
+            line-height: 1.4;
+            margin: 0 0 18px;
+            font-style: italic;
+        }
+
+        .cell p,
+        .cell li {
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        .cell p {
+            margin: 0 0 13px;
+        }
+
+        .cell p:last-child {
+            margin-bottom: 0;
+        }
+
+        .cell .prompt {
+            font-size: 11px;
+            margin-bottom: 18px;
+        }
+
+        .cell .lead {
+            font-size: 16px;
+            line-height: 1.4;
+            font-weight: 600;
+            margin-bottom: 18px;
+        }
+
+        .cell h3 {
+            font-size: 12px;
+            font-weight: 700;
+            margin: 14px 0 4px;
+        }
+
+        ul {
+            margin: 0;
+            padding-left: 16px;
+        }
+
+        li {
+            margin: 0 0 10px;
+        }
+
+        li:last-child {
+            margin-bottom: 0;
+        }
+
+        .cell .mini {
+            font-size: 11px;
+            line-height: 1.45;
+            color: var(--muted);
+            margin-top: 14px;
+        }
+
+        .cell .statement {
+            font-size: 17px;
+            line-height: 1.5;
+            letter-spacing: -.2px;
+        }
+
+        .update-points p {
+            font-size: 12px;
+            line-height: 1.45;
+            margin-bottom: 10px;
+        }
+
+        .updates .journey-heading {
+            font-size: 14px;
+            padding-top: 15px;
+            border-top: 1px solid #d5dfd3;
+            margin-top: 16px;
+            margin-bottom: 12px;
+            color: #416f43;
+        }
+
+        .journey {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .journey-stage {
+            display: grid;
+            grid-template-columns: 23px 1fr;
+            gap: 8px;
+            border-left: 2px solid #d9e2d6;
+            margin: 0 0 12px 10px;
+            padding-left: 10px;
+        }
+
+        .stage-number {
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background: #e9f0e5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: -22px;
+            font-size: 11px;
+            font-weight: 700;
+            color: #526e50;
+        }
+
+        .journey-stage h4 {
+            font-size: 13px;
+            line-height: 1.3;
+            margin: 1px 0 3px;
+        }
+
+        .journey-stage p {
+            font-size: 11px;
+            line-height: 1.4;
+            margin: 0 0 3px;
+        }
+
+        .stage-meta {
+            display: flex;
+            justify-content: space-between;
+            gap: 5px;
+            font-size: 10px;
+            color: #778279;
+        }
+
+        .gate {
+            border-left-color: #c38d46;
+        }
+
+        .gate .stage-number {
+            background: #f7e8cf;
+            color: #926125;
+        }
+
+        .cell .gate-key {
+            font-size: 11px;
+            color: #806139;
+            line-height: 1.4;
+            margin-top: 12px;
+        }
+
+        .gate-key span {
+            display: inline-block;
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #c38d46;
+            margin-right: 4px;
+        }
+
+        .mood {
+            margin: 16px 0 0;
+            padding-top: 12px;
+            border-top: 1px solid #d5dfd3;
+        }
+
+        .mood figcaption {
+            font-size: 11px;
+            color: var(--muted);
+        }
+
+        .mood svg {
+            width: 100%;
+            height: 78px;
+            display: block;
+        }
+
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 24px;
+            margin-top: 14px;
+            font-size: 10px;
+            color: #7b847e;
+            line-height: 1.5;
+        }
+
+        .footer p {
+            margin: 0;
+            max-width: 100ch;
+        }
+
+        .footer a {
+            color: inherit;
+            text-decoration-color: #b8c1ba;
+            text-underline-offset: 2px;
+        }
+
+        a:focus-visible {
+            outline: 3px solid #4e8550;
+            outline-offset: 3px;
+        }
+
+        @media(min-width:1900px) {
+            .cell {
+                padding: 22px;
+            }
+
+            .cell p,
+            .cell li {
+                font-size: 14px;
+            }
+
+            .cell .prompt {
+                font-size: 12px;
+            }
+
+            .cell .lead {
+                font-size: 17px;
+            }
+
+            .cell h3 {
+                font-size: 13px;
+            }
+
+            .update-points p {
+                font-size: 13px;
+            }
+
+            .journey-stage p {
+                font-size: 12px;
+            }
+
+            .journey-stage h4 {
+                font-size: 14px;
+            }
+
+            .stage-meta {
+                font-size: 11px;
+            }
+        }
+
+        @media(max-width:1250px) {
+            main {
+                padding: 16px;
+            }
+
+            .top {
+                grid-template-columns: 1fr 1fr;
+                gap: 12px;
+            }
+
+            .top>div:first-child {
+                grid-column: 1/-1;
+            }
+
+            .top .meta:last-child {
+                grid-column: 1/-1;
+                min-height: 0;
+            }
+
+            .grid {
+                grid-template-columns: 1fr 1fr;
+                grid-template-rows: none;
+            }
+
+            .cell {
+                grid-column: auto;
+                grid-row: auto;
+            }
+
+            .updates {
+                grid-column: 1/-1;
+            }
+
+            .journey {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 0 20px;
+            }
+
+            .mood svg {
+                max-width: 420px;
+            }
+
+            .cell p,
+            .cell li {
+                font-size: 14px;
+            }
+
+            .footer {
+                flex-direction: column;
+                gap: 8px;
+            }
+        }
+
+        @media(max-width:600px) {
+            main {
+                padding: 0;
+            }
+
+            .top {
+                gap: 10px;
+                margin-bottom: 18px;
+            }
+
+            h1 {
+                font-size: 30px;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cell,
+            .updates {
+                grid-column: 1;
+            }
+
+            .cell {
+                padding: 18px;
+            }
+
+            .journey {
+                display: block;
+            }
+
+            .cell .statement {
+                font-size: 18px;
+            }
+
+            .meta {
+                font-size: 12px;
+            }
+        }
+
+        @media print {
+            main {
+                padding: 0;
+                max-width: none;
+            }
+
+            .paper {
+                padding: 0;
+                border-radius: 0;
+            }
+
+            .top {
+                grid-template-columns: 1.7fr 1.25fr 1.05fr .65fr;
+                gap: 12px;
+                margin-bottom: 16px;
+            }
+
+            .top>div:first-child,
+            .top .meta:last-child {
+                grid-column: auto;
+            }
+
+            .grid {
+                grid-template-columns: 1fr 1fr 1fr 1.04fr 1.09fr;
+                grid-template-rows: minmax(250px, auto) minmax(250px, auto) minmax(190px, auto);
+            }
+
+            .task {
+                grid-column: 1;
+                grid-row: 1;
+            }
+
+            .avoid {
+                grid-column: 2;
+                grid-row: 1;
+            }
+
+            .needs {
+                grid-column: 3;
+                grid-row: 1;
+            }
+
+            .benefit {
+                grid-column: 4;
+                grid-row: 1;
+            }
+
+            .vision {
+                grid-column: 1;
+                grid-row: 2;
+            }
+
+            .if {
+                grid-column: 2;
+                grid-row: 2;
+            }
+
+            .advantages {
+                grid-column: 3;
+                grid-row: 2;
+            }
+
+            .reduction {
+                grid-column: 4;
+                grid-row: 2;
+            }
+
+            .vision-sentence {
+                grid-column: 1;
+                grid-row: 3;
+            }
+
+            .impact {
+                grid-column: 2;
+                grid-row: 3;
+            }
+
+            .objectives {
+                grid-column: 3;
+                grid-row: 3;
+            }
+
+            .clarify {
+                grid-column: 4;
+                grid-row: 3;
+            }
+
+            .updates {
+                grid-column: 5;
+                grid-row: 1/4;
+            }
+
+            .journey {
+                display: block;
+            }
+
+            .cell {
+                padding: 14px;
+            }
+
+            .cell p,
+            .cell li {
+                font-size: 11px;
+            }
+
+            .cell .lead {
+                font-size: 14px;
+            }
+
+            .cell .statement {
+                font-size: 14px;
+            }
+
+            h1 {
+                font-size: 28px;
+            }
+
+            h2 {
+                font-size: 17px;
+            }
+
+            .journey-stage p {
+                font-size: 10px;
+            }
+
+            .journey-stage h4 {
+                font-size: 11px;
+            }
+
+            .stage-meta {
+                font-size: 9px;
+            }
+
+            .mood svg {
+                height: 60px;
+            }
+
+            .footer {
+                flex-direction: row;
+                font-size: 8px;
+            }
+
+            * {
+                print-color-adjust: exact;
+                -webkit-print-color-adjust: exact;
+            }
+
+            @page {
+                size: A3 landscape;
+                margin: 10mm;
+            }
+        }
+
+        @media print {
+            .journey-stage {
+                margin-bottom: 8px;
+            }
+
+            .update-points p {
+                margin-bottom: 7px;
+            }
+
+            .updates .journey-heading {
+                margin-top: 10px;
+                padding-top: 10px;
+                margin-bottom: 9px;
+            }
+
+            .cell .prompt {
+                margin-bottom: 12px;
+            }
+
+            .cell p {
+                margin-bottom: 9px;
+            }
+
+            .cell .mini {
+                margin-top: 8px;
+            }
+
+            .mood {
+                margin-top: 10px;
+                padding-top: 8px;
+            }
+
+            .mood svg {
+                height: 50px;
+            }
+        }
+
+        @media print {
+            .journey-stage {
+                margin-bottom: 6px;
+            }
+
+            .journey-stage p {
+                margin: 0 0 2px;
+            }
+
+            .update-points p {
+                margin-bottom: 6px;
+            }
+
+            .footer {
+                margin-top: 8px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <article class="paper">
+            <header class="top">
+                <div>
+                    <h1>Customer Journey Canvas</h1>
+                    <p class="subtitle">AIPot · Municipal road monitoring</p><span class="status">Hypothesis based on project documents, not a completed interview</span>
+                </div>
+                <div class="meta"><span>Potential customer</span><strong>Road maintenance planner<br>Straßen- und Tiefbauamt Dresden</strong></div>
+                <div class="meta"><span>Prepared by</span><strong>SAAB project group</strong><span style="margin-top:6px">Input: CJ ideas, BMC, VPC and JTBD</span></div>
+                <div class="meta"><span>Updated / Iteration</span><strong>4 Nov 2026 / 1</strong></div>
+            </header>
+            <div class="grid">
+                <section class="cell task" aria-labelledby="task-title">
+                    <header class="cell-head">
+                        <h2 id="task-title">Task to be Done</h2><svg viewBox="0 0 24 24" aria-hidden="true">
+                            <circle cx="12" cy="7" r="4" />
+                            <path d="M4 22v-5a8 8 0 0 1 16 0v5" />
+                        </svg>
+                    </header>
+                    <p class="prompt">What does the customer need to accomplish?</p>
+                    <p class="lead">Keep roads safe and drivable within a fixed budget and limited staff.</p>
+                    <h3>Current workflow</h3>
+                    <p>Inspection drives, existing citizen complaints and manual records.</p>
+                    <h3>Core job</h3>
+                    <p>Locate damage, prioritise checks, confirm findings, plan repairs and monitor changes.</p>
+                    <h3>People involved</h3>
+                    <p>Road planner, department head, privacy and IT teams, fleet operations, procurement and budget decision-makers.</p>
+                </section>
+                <section class="cell avoid" aria-labelledby="avoid-title">
+                    <header class="cell-head">
+                        <h2 id="avoid-title">To Avoid</h2><svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="m12 2 10 19H2L12 2Zm0 6v6m0 3v1" />
+                        </svg>
+                    </header>
+                    <p class="prompt">What makes the current situation painful?</p>
+                    <ul>
+                        <li>Damage discovered after complaints or incidents.</li>
+                        <li>Limited staff spending time on repeated survey drives.</li>
+                        <li>Missed defects or false alarms that waste crew time.</li>
+                        <li>Unclear privacy, procurement or investment risks.</li>
+                        <li>A new system that adds work but sees little use.</li>
+                    </ul>
+                </section>
+                <section class="cell needs" aria-labelledby="needs-title">
+                    <header class="cell-head">
+                        <h2 id="needs-title">Needs</h2><svg viewBox="0 0 24 24" aria-hidden="true">
+                            <circle cx="12" cy="12" r="8" />
+                            <circle cx="12" cy="12" r="3" />
+                            <path d="M12 0v5m0 14v5M0 12h5m14 0h5" />
+                        </svg>
+                    </header>
+                    <p class="prompt">What must be in place, and when?</p>
+                    <ul>
+                        <li>Department sponsor, pilot budget and suitable fleet vehicles.</li>
+                        <li>City review of imagery, privacy, hosting and access.</li>
+                        <li>Manual inspection baseline and agreed success thresholds.</li>
+                        <li>Accuracy, route coverage and staff time measured in the pilot.</li>
+                        <li>Simple onboarding and a defined GIS integration scope.</li>
+                    </ul>
+                </section>
+                <section class="cell benefit" aria-labelledby="benefit-title">
+                    <header class="cell-head">
+                        <h2 id="benefit-title">Cost vs. Benefit</h2><svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M12 2v20M3 7h18M6 7l-4 7h8L6 7Zm12 0-4 7h8l-4-7ZM7 22h10" />
+                        </svg>
+                    </header>
+                    <p class="prompt">What would the city pay, and what would improve?</p>
+                    <h3>Customer costs</h3>
+                    <p>Camera kits, annual licence, setup, staff training and review of findings.</p>
+                    <h3>Potential benefits</h3>
+                    <p>Less inspection effort, earlier defect discovery and better use of maintenance budgets.</p>
+                    <h3>Compare against the baseline</h3>
+                    <p>Measure time saved, useful coverage, detection quality and total annual cost.</p>
+                    <p class="mini">Savings and fewer damage claims are outcomes to test, not proven results.</p>
+                </section>
+                <section class="cell vision" aria-labelledby="vision-title">
+                    <header class="cell-head">
+                        <h2 id="vision-title">Vision</h2><svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12Z" />
+                            <circle cx="12" cy="12" r="3" />
+                        </svg>
+                    </header>
+                    <p class="prompt">Where does the customer want to be?</p>
+                    <p class="lead">A current, evidence-based view of the road network.</p>
+                    <p>Routine municipal vehicle routes provide repeat observations. Planners can explain priorities to managers and the council.</p>
+                    <p class="mini">The city stays responsible for inspection decisions and repairs.</p>
+                </section>
+                <section class="cell if" aria-labelledby="if-title">
+                    <header class="cell-head">
+                        <h2 id="if-title">What Will Happen If…</h2><svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M3 3h18v18H3ZM8 3v18m8-18v18M3 8h5m8 0h5M3 16h5m8 0h5" />
+                        </svg>
+                    </header>
+                    <p class="prompt">What changes with adoption, or without it?</p>
+                    <h3>If the pilot succeeds</h3>
+                    <p>Expand to more vehicles, train staff and use repeat scans in routine planning.</p>
+                    <h3>If nothing changes</h3>
+                    <p>Winter damage, inspection backlogs and pressure from complaints remain.</p>
+                    <h3>At renewal</h3>
+                    <p>Review actual usage and value before expanding or renewing.</p>
+                </section>
+                <section class="cell advantages" aria-labelledby="advantages-title">
+                    <header class="cell-head">
+                        <h2 id="advantages-title">Needed Advantages</h2><svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="m12 2 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1 3-6Z" />
+                        </svg>
+                    </header>
+                    <p class="prompt">What must the product do well?</p>
+                    <ul>
+                        <li>Detect visible potholes and surface defects reliably.</li>
+                        <li>Provide locations, image evidence and severity estimates.</li>
+                        <li>Track changes across repeat scans and export to GIS.</li>
+                        <li>Limit imagery and support the city&#x27;s privacy requirements.</li>
+                        <li>Give staff clear reports and practical support.</li>
+                    </ul>
+                </section>
+                <section class="cell reduction" aria-labelledby="reduction-title">
+                    <header class="cell-head">
+                        <h2 id="reduction-title">Cost Reduction</h2><svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M3 5h18v14H3ZM7 9h10m-10 6h5M15 22l6-6m-5 0h5v5" />
+                        </svg>
+                    </header>
+                    <p class="prompt">How can adoption stay manageable?</p>
+                    <ul>
+                        <li>Use existing garbage trucks and road sweepers.</li>
+                        <li>Start with a few vehicles in one district.</li>
+                        <li>Set a capped pilot scope, price and staff workload.</li>
+                        <li>Use existing GIS workflows and short training.</li>
+                        <li>Compare annual per-vehicle and authority-wide licences.</li>
+                    </ul>
+                    <p class="mini">A limited pilot reduces exposure; it is not automatically free or risk-free.</p>
+                </section>
+                <section class="cell vision-sentence" aria-labelledby="vision-sentence-title">
+                    <header class="cell-head">
+                        <h2 id="vision-sentence-title">Vision Sentence</h2><svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M12 2v4m0 12v4M2 12h4m12 0h4M5 5l3 3m8 8 3 3M5 19l3-3m8-8 3-3" />
+                            <circle cx="12" cy="12" r="5" />
+                        </svg>
+                    </header>
+                    <p class="prompt">The customer's desired future</p>
+                    <p class="statement">“Know where road damage is developing, so we can act before it becomes a bigger problem.”</p>
+                </section>
+                <section class="cell impact" aria-labelledby="impact-title">
+                    <header class="cell-head">
+                        <h2 id="impact-title">Impact Sentence</h2><svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M2 8h11V3l9 9-9 9v-5H2V8Z" />
+                        </svg>
+                    </header>
+                    <p class="prompt">The intended change</p>
+                    <p class="statement">“Use routine fleet images to help municipal teams find, verify and prioritise road defects with less manual screening.”</p>
+                </section>
+                <section class="cell objectives" aria-labelledby="objectives-title">
+                    <header class="cell-head">
+                        <h2 id="objectives-title">Objectives for Change</h2><svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M4 3h16v19H4ZM8 1v5m8-5v5M7 11l2 2 4-4m-6 9h10" />
+                        </svg>
+                    </header>
+                    <p class="prompt">What should the pilot establish?</p>
+                    <ul>
+                        <li>Run a three-month district pilot against manual inspection.</li>
+                        <li>Agree measurable success criteria before deployment.</li>
+                        <li>Provide evidence for a rollout and budget decision.</li>
+                    </ul>
+                </section>
+                <section class="cell clarify" aria-labelledby="clarify-title">
+                    <header class="cell-head">
+                        <h2 id="clarify-title">To Clarify</h2><svg viewBox="0 0 24 24" aria-hidden="true">
+                            <circle cx="12" cy="12" r="10" />
+                            <path d="M9 8a3 3 0 0 1 6 0c0 3-3 3-3 6m0 3v1" />
+                        </svg>
+                    </header>
+                    <p class="prompt">What is still undecided?</p>
+                    <ul>
+                        <li>Pilot price and who funds it.</li>
+                        <li>Licence per vehicle or per authority.</li>
+                        <li>Actual route frequency and coverage.</li>
+                        <li>Privacy, hosting and GIS scope.</li>
+                        <li>Success thresholds and procurement timing.</li>
+                    </ul>
+                </section>
+                <section class="cell updates" aria-labelledby="updates-title">
+                    <header class="cell-head">
+                        <h2 id="updates-title">BMC Update Plan</h2><svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M4 2h16v20H4ZM7 7l2 2 3-4m1 3h4M7 15l2 2 3-4m1 3h4" />
+                        </svg>
+                    </header>
+                    <p class="prompt">How the journey shapes our model</p>
+                    <div class="update-points">
+                        <p><strong>Customer:</strong> municipal road departments, supported by fleet operations.</p>
+                        <p><strong>Offer:</strong> camera-kit sale plus an annual detection licence.</p>
+                        <p><strong>Relationship:</strong> pilot, onboarding, support and evidence for renewal.</p>
+                        <p><strong>Licensing:</strong> per vehicle or one general licence per authority; still open.</p>
+                    </div>
+                    <h3 class="journey-heading">Buying journey · hypothesis</h3>
+                    <ol class="journey">
+                        <li class="journey-stage"><span class="stage-number">1</span>
+                            <div>
+                                <h4>Winter pressure</h4>
+                                <p>Complaints and damage raise urgency.</p>
+                                <div class="stage-meta"><span>Stressed</span><span>Jan to Apr</span></div>
+                            </div>
+                        </li>
+                        <li class="journey-stage"><span class="stage-number">2</span>
+                            <div>
+                                <h4>Explore alternatives</h4>
+                                <p>Events, outreach and a local demo.</p>
+                                <div class="stage-meta"><span>Curious, sceptical</span><span>1 to 3 months</span></div>
+                            </div>
+                        </li>
+                        <li class="journey-stage gate"><span class="stage-number">3</span>
+                            <div>
+                                <h4>Assess feasibility</h4>
+                                <p>Department, privacy and IT review.</p>
+                                <div class="stage-meta"><span>Cautious</span><span>Before pilot</span></div>
+                            </div>
+                        </li>
+                        <li class="journey-stage gate"><span class="stage-number">4</span>
+                            <div>
+                                <h4>Pilot</h4>
+                                <p>Few trucks; compare with inspections.</p>
+                                <div class="stage-meta"><span>Hopeful</span><span>3 months</span></div>
+                            </div>
+                        </li>
+                        <li class="journey-stage gate"><span class="stage-number">5</span>
+                            <div>
+                                <h4>Purchase</h4>
+                                <p>Budget decision, procurement, contract.</p>
+                                <div class="stage-meta"><span>Relieved</span><span>3 to 6 months</span></div>
+                            </div>
+                        </li>
+                        <li class="journey-stage"><span class="stage-number">6</span>
+                            <div>
+                                <h4>Roll out</h4>
+                                <p>Equip vehicles, train staff, connect GIS.</p>
+                                <div class="stage-meta"><span>Wants simplicity</span><span>After purchase</span></div>
+                            </div>
+                        </li>
+                        <li class="journey-stage"><span class="stage-number">7</span>
+                            <div>
+                                <h4>Use daily</h4>
+                                <p>Review maps, alerts and reports.</p>
+                                <div class="stage-meta"><span>In control</span><span>Ongoing</span></div>
+                            </div>
+                        </li>
+                        <li class="journey-stage"><span class="stage-number">8</span>
+                            <div>
+                                <h4>Renew &amp; recommend</h4>
+                                <p>Review value; expand if justified.</p>
+                                <div class="stage-meta"><span>Confident</span><span>Annual</span></div>
+                            </div>
+                        </li>
+                    </ol>
+                    <p class="gate-key"><span></span>Decision gates: privacy review, pilot evidence and budget approval.</p>
+                    <figure class="mood">
+                        <figcaption>Illustrative planner confidence</figcaption>
+                        <svg viewBox="0 0 320 83" role="img" aria-label="Hypothetical confidence across stages one to eight: low under winter pressure, cautious during review, then rising through the pilot, use and renewal.">
+                            <path d="M12 60H308" stroke="#d6ded8" fill="none" />
+                            <path d="M12 55 54 39 96 50 138 31 180 24 222 28 264 15 306 8" stroke="#4e8550" stroke-width="2.5" fill="none" stroke-linejoin="round" />
+                            <g fill="#4e8550">
+                                <circle cx="12" cy="55" r="3" />
+                                <circle cx="54" cy="39" r="3" />
+                                <circle cx="96" cy="50" r="3" />
+                                <circle cx="138" cy="31" r="3" />
+                                <circle cx="180" cy="24" r="3" />
+                                <circle cx="222" cy="28" r="3" />
+                                <circle cx="264" cy="15" r="3" />
+                                <circle cx="306" cy="8" r="3" />
+                            </g>
+                            <g fill="#6a756c" font-family="Arial, sans-serif" font-size="11" text-anchor="middle"><text x="12" y="78">1</text><text x="54" y="78">2</text><text x="96" y="78">3</text><text x="138" y="78">4</text><text x="180" y="78">5</text><text x="222" y="78">6</text><text x="264"
+                                    y="78">7</text><text x="306" y="78">8</text></g>
+                        </svg>
+                    </figure>
+                    <p class="mini">Draft timing suggests roughly one year to contract. Validate durations and emotions with the city.</p>
+                </section>
+            </div>
+            <footer class="footer">
+                <p>Adapted from the Customer Travel Canvas by Lean Innovation Center LINC, TU Dresden. Renamed and filled using the supplied journey draft and existing project canvases.<br>Layout source: <a href="https://linc.inf.tu-dresden.de" target="_blank" rel="noopener noreferrer">LINC</a> ·
+                    Adaptation licensed under <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener noreferrer">CC BY-SA 3.0</a>.</p>
+                <p>All timings, benefits and decision roles remain pilot or interview assumptions.</p>
+            </footer>
+        </article>
+    </main>
+</body>
+
+</html>

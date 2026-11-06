@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Value Proposition Canvas: AI Potholes</title>
+    <style>
+        :root {
+            color-scheme: light;
+            --foreground: #252932;
+            --muted: #646972;
+            --card: #fff;
+            --border: #858585;
+            --radius: 12px;
+            --font-sans: Arial, Helvetica, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            color: var(--foreground);
+            font-family: var(--font-sans);
+        }
+
+        main {
+            max-width: 1800px;
+            margin: auto;
+        }
+
+        .desktop-canvas {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+
+        .diagram-copy {
+            color: #272b32;
+            font: 17px/1.45 Arial, Helvetica, sans-serif;
+        }
+
+        .diagram-copy ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        .diagram-copy li {
+            margin: 0 0 11px;
+            padding-left: 1px;
+        }
+
+        .canvas-label {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 22px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            fill: #65666a;
+        }
+
+        .caption {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 19px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            fill: #65666a;
+        }
+
+        .mobile-canvas {
+            display: none;
+        }
+
+        @media (max-width: 600px) {
+            .desktop-canvas {
+                display: none;
+            }
+
+            .mobile-canvas {
+                display: block;
+                padding: 16px;
+                background: #fff;
+                border-radius: var(--radius);
+            }
+
+            h1 {
+                font-size: 28px;
+                line-height: 1.1;
+                letter-spacing: -.7px;
+                margin: 0 0 10px;
+            }
+
+            .segment {
+                color: #646972;
+                font-size: 14px;
+                margin-bottom: 24px;
+            }
+
+            .mobile-section {
+                border: 1px solid #d8d8d8;
+                margin-top: 14px;
+            }
+
+            h2 {
+                font-size: 18px;
+                margin: 0;
+                padding: 12px 14px;
+                background: #efc5de;
+            }
+
+            .mobile-section:nth-of-type(n+4) h2 {
+                background: #ffdfca;
+            }
+
+            .mobile-section ul {
+                padding: 4px 24px 8px 34px;
+                font-size: 15px;
+                line-height: 1.5;
+            }
+
+            .mobile-section li {
+                margin: 10px 0;
+            }
+
+            .note {
+                font-size: 12px;
+                line-height: 1.5;
+                color: #646972;
+                margin: 22px 0 0;
+            }
+        }
+
+        @media print {
+            .desktop-canvas {
+                display: block;
+            }
+
+            .mobile-canvas {
+                display: none;
+            }
+
+            * {
+                print-color-adjust: exact;
+                -webkit-print-color-adjust: exact;
+            }
+
+            @page {
+                size: A3 landscape;
+                margin: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <svg class="desktop-canvas" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="vpc-title vpc-desc">
+            <title id="vpc-title">Value Proposition Canvas: AI Potholes</title>
+            <desc id="vpc-desc">A value map for camera kits and licensed AI detection on the left, matched to the jobs, pains and gains of municipal road departments on the right.</desc>
+            <rect width="1600" height="900" fill="#fff" />
+            <text x="54" y="80" font-family="Arial, Helvetica, sans-serif" font-size="46" font-weight="700" letter-spacing="-1.2" fill="#4d5158">VALUE PROPOSITION CANVAS: AI POTHOLES</text>
+            <text x="56" y="111" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#71747c">Customer: cities, municipalities and their road departments</text>
+
+            <!-- Value map: three sections in a square. -->
+            <rect x="56" y="148" width="730" height="650" fill="#efc5de" stroke="#858585" stroke-width="3" />
+            <rect x="112" y="195" width="620" height="556" fill="#fff" stroke="#858585" stroke-width="3" />
+            <path d="M56 148 455 473 56 798 M455 473H786" fill="none" stroke="#858585" stroke-width="3" />
+            <text class="canvas-label" x="421" y="179" text-anchor="middle">GAIN CREATORS</text>
+            <text class="canvas-label" x="421" y="780" text-anchor="middle">PAIN RELIEVERS</text>
+            <text class="canvas-label" transform="translate(91 473) rotate(-90)" text-anchor="middle">PRODUCTS &amp; SERVICES</text>
+            <foreignObject x="338" y="250" width="364" height="174">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="diagram-copy" aria-label="Gain creators">
+                    <ul>
+                        <li>Scan during existing fleet routes</li>
+                        <li>Refresh maps through repeat scans</li>
+                        <li>Track changes over time</li>
+                        <li>Support maintenance planning</li>
+                    </ul>
+                </div>
+            </foreignObject>
+            <foreignObject x="132" y="375" width="195" height="230">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="diagram-copy" aria-label="Products &amp; services">
+                    <ul>
+                        <li>Vehicle-mounted cameras</li>
+                        <li>AI detection licence</li>
+                        <li>Map and image reports</li>
+                        <li>Updates and support</li>
+                    </ul>
+                </div>
+            </foreignObject>
+            <foreignObject x="338" y="553" width="364" height="174">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="diagram-copy" aria-label="Pain relievers">
+                    <ul>
+                        <li>Automate initial defect screening</li>
+                        <li>Locate findings with image evidence</li>
+                        <li>Limit images, blur faces and plates</li>
+                        <li>Pilot before wider deployment</li>
+                    </ul>
+                </div>
+            </foreignObject>
+
+            <!-- Customer profile: three sections in a circle. -->
+            <circle cx="1196" cy="473" r="325" fill="#ffdfca" stroke="#858585" stroke-width="3" />
+            <circle cx="1196" cy="473" r="279" fill="#fff" stroke="#858585" stroke-width="3" />
+            <path d="M1196 473 1375 202 M1196 473 1364 751 M455 473H1196" fill="none" stroke="#858585" stroke-width="3" />
+            <defs>
+                <path id="gains-arc" d="M902.123 447.289 A295 295 0 0 1 1272.352 188.052" />
+                <path id="pains-arc" d="M887.180 500.018 A310 310 0 0 0 1276.234 772.437" />
+                <path id="jobs-arc" d="M1365.205 231.350 A295 295 0 0 1 1365.205 714.650" />
+            </defs>
+            <text class="canvas-label" text-anchor="middle">
+                <textPath href="#gains-arc" startOffset="50%">GAINS</textPath>
+            </text>
+            <text class="canvas-label" text-anchor="middle">
+                <textPath href="#pains-arc" startOffset="50%">PAINS</textPath>
+            </text>
+            <text class="canvas-label" text-anchor="middle">
+                <textPath href="#jobs-arc" startOffset="50%">CUSTOMER JOBS</textPath>
+            </text>
+            <foreignObject x="1004" y="286" width="303" height="163">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="diagram-copy" aria-label="Gains">
+                    <ul>
+                        <li>Up-to-date road information</li>
+                        <li>Less inspection effort</li>
+                        <li>Better budget allocation</li>
+                        <li>Safer road infrastructure</li>
+                    </ul>
+                </div>
+            </foreignObject>
+            <foreignObject x="984" y="484" width="280" height="265">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="diagram-copy" aria-label="Pains">
+                    <ul>
+                        <li>Limited staff and budgets</li>
+                        <li>Manual, infrequent inspections</li>
+                        <li>Defects discovered too late</li>
+                        <li>To little funds available to maintain everything</li>
+                        <li>Privacy of bystanders</li>
+                    </ul>
+                </div>
+            </foreignObject>
+            <foreignObject x="1277" y="398" width="182" height="220">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="diagram-copy" aria-label="Customer jobs">
+                    <ul>
+                        <li>Monitor road condition</li>
+                        <li>Prioritise efficiently</li>
+                        <li>Plan maintenance</li>
+                    </ul>
+                </div>
+            </foreignObject>
+
+            <text class="caption" x="56" y="835">VALUE PROPOSITION</text>
+            <text class="caption" x="1521" y="835" text-anchor="end">CUSTOMER PROFILE</text>
+            <text x="56" y="872" font-family="Arial, Helvetica, sans-serif" font-size="13" fill="#71747c">Expected benefits to validate in a pilot: detection accuracy, route coverage, inspection effort and potential cost savings.</text>
+            <text x="1521" y="872" text-anchor="end" font-family="Arial, Helvetica, sans-serif" font-size="13" fill="#71747c">Concept · 2 November 2026</text>
+        </svg>
+        <div class="mobile-canvas">
+            <h1>Value Proposition Canvas: AI Potholes</h1>
+            <p class="segment">Customer: cities, municipalities and their road departments</p>
+            <section class="mobile-section">
+                <h2>Products &amp; services</h2>
+                <ul>
+                    <li>Vehicle-mounted cameras</li>
+                    <li>AI detection licence</li>
+                    <li>Map and image reports</li>
+                    <li>Updates and support</li>
+                </ul>
+            </section>
+            <section class="mobile-section">
+                <h2>Gain creators</h2>
+                <ul>
+                    <li>Scan during existing fleet routes</li>
+                    <li>Refresh maps through repeat scans</li>
+                    <li>Track changes over time</li>
+                    <li>Support maintenance planning</li>
+                </ul>
+            </section>
+            <section class="mobile-section">
+                <h2>Pain relievers</h2>
+                <ul>
+                    <li>Automate initial defect screening</li>
+                    <li>Locate findings with image evidence</li>
+                    <li>Limit images, blur faces and plates</li>
+                    <li>Pilot before wider deployment</li>
+                </ul>
+            </section>
+            <section class="mobile-section">
+                <h2>Customer jobs</h2>
+                <ul>
+                    <li>Monitor road condition</li>
+                    <li>Prioritise inspections</li>
+                    <li>Plan maintenance</li>
+                    <li>Document decisions</li>
+                </ul>
+            </section>
+            <section class="mobile-section">
+                <h2>Gains</h2>
+                <ul>
+                    <li>Up-to-date road information</li>
+                    <li>Less inspection effort</li>
+                    <li>Better budget allocation</li>
+                    <li>Safer road infrastructure</li>
+                </ul>
+            </section>
+            <section class="mobile-section">
+                <h2>Pains</h2>
+                <ul>
+                    <li>Limited staff and budgets</li>
+                    <li>Manual, infrequent inspections</li>
+                    <li>Defects discovered too late</li>
+                    <li>Privacy and investment concerns</li>
+                </ul>
+            </section>
+            <p class="note">Expected benefits to validate in a pilot: detection accuracy, route coverage, inspection effort and potential cost savings.</p>
+        </div>
+    </main>
+</body>
+
+</html>

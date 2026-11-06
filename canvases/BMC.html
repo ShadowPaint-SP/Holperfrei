@@ -1,0 +1,413 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Business Model Canvas: AI Potholes</title>
+    <style>
+        :root {
+            color-scheme: light;
+            --paper: #f6f7fc;
+            --blue: #315cf4;
+            --ink: #20252d;
+            --muted: #5b6471;
+            --line: #dfe3eb;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background: #fff;
+            color: var(--ink);
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .canvas {
+            width: 100%;
+            min-height: 900px;
+            padding: 32px 64px 20px;
+            background: var(--paper);
+        }
+
+        .heading {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        h1 {
+            margin: 0 0 10px;
+            font-size: 46px;
+            letter-spacing: -1.7px;
+            line-height: 1.15;
+        }
+
+        .subtitle {
+            margin: 0;
+            color: var(--muted);
+            font-size: 19px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(10, minmax(0, 1fr));
+            grid-template-rows: 244px 220px 190px;
+            gap: 12px;
+        }
+
+        .block {
+            border: 1px solid var(--line);
+            background: #fff;
+            min-width: 0;
+        }
+
+        .partners {
+            grid-column: 1/3;
+            grid-row: 1/3;
+        }
+
+        .activities {
+            grid-column: 3/5;
+            grid-row: 1;
+        }
+
+        .resources {
+            grid-column: 3/5;
+            grid-row: 2;
+        }
+
+        .value {
+            grid-column: 5/7;
+            grid-row: 1/3;
+        }
+
+        .relations {
+            grid-column: 7/9;
+            grid-row: 1;
+        }
+
+        .channels {
+            grid-column: 7/9;
+            grid-row: 2;
+        }
+
+        .segments {
+            grid-column: 9/11;
+            grid-row: 1/3;
+        }
+
+        .costs {
+            grid-column: 1/6;
+            grid-row: 3;
+        }
+
+        .revenues {
+            grid-column: 6/11;
+            grid-row: 3;
+        }
+
+        h2 {
+            margin: 0;
+            padding: 12px 8px;
+            color: #fff;
+            background: var(--blue);
+            text-align: center;
+            font-size: 14px;
+            line-height: 1.15;
+            font-weight: 500;
+            text-transform: uppercase;
+        }
+
+        .body {
+            padding: 14px 15px;
+        }
+
+        .question {
+            margin: 0 0 12px;
+            font-size: 14px;
+            color: var(--muted);
+        }
+
+        ul {
+            margin: 0;
+            padding-left: 18px;
+        }
+
+        li {
+            padding-left: 1px;
+            margin: 0 0 11px;
+            font-size: 16px;
+            line-height: 1.38;
+        }
+
+        .activities li,
+        .resources li,
+        .relations li,
+        .channels li {
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+
+        .small-note {
+            margin-top: 18px;
+            font-size: 13px;
+            line-height: 1.4;
+            color: var(--muted);
+        }
+
+        .costs .question,
+        .revenues .question {
+            display: none;
+        }
+
+        .revenues .small-note {
+            margin: 10px 0 0;
+            font-size: 12px;
+        }
+
+        .columns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 26px;
+        }
+
+        .columns h3 {
+            margin: 0 0 8px;
+            font-size: 15px;
+        }
+
+        .columns p {
+            margin: 0;
+            font-size: 15px;
+            line-height: 1.5;
+        }
+
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            gap: 24px;
+            font-size: 12px;
+            line-height: 1.4;
+            color: var(--muted);
+            margin-top: 16px;
+        }
+
+        .footer span:first-child {
+            max-width: 1000px;
+        }
+
+        @media (max-width: 900px) {
+            .canvas {
+                padding: 24px 16px;
+                min-height: auto;
+            }
+
+            h1 {
+                font-size: 32px;
+                letter-spacing: -1px;
+            }
+
+            .subtitle {
+                font-size: 16px;
+            }
+
+            .grid {
+                grid-template-columns: 1fr 1fr;
+                grid-template-rows: none;
+            }
+
+            .block {
+                grid-column: auto;
+                grid-row: auto;
+            }
+
+            .value,
+            .costs,
+            .revenues {
+                grid-column: 1/-1;
+            }
+
+            li,
+            .activities li,
+            .resources li,
+            .relations li,
+            .channels li {
+                font-size: 16px;
+            }
+
+            .footer {
+                flex-direction: column;
+                gap: 8px;
+            }
+        }
+
+        @media (max-width: 520px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            .block {
+                grid-column: 1;
+            }
+
+            .columns {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+        }
+
+        @media print {
+            .canvas {
+                min-height: auto;
+            }
+
+            * {
+                print-color-adjust: exact;
+                -webkit-print-color-adjust: exact;
+            }
+
+            @page {
+                size: A3 landscape;
+                margin: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <main class="canvas">
+        <header class="heading">
+            <h1>Business Model Canvas: AI Potholes</h1>
+            <p class="subtitle">Camera kits for municipal vehicles, with licensed AI street monitoring</p>
+        </header>
+        <div class="grid">
+            <section class="block partners" aria-labelledby="partners">
+                <h2 id="partners">Key partners</h2>
+                <div class="body">
+                    <p class="question">Who helps us deliver?</p>
+                    <ul>
+                        <li>Camera, sensor and computing hardware suppliers</li>
+                        <li>Municipal fleet departments for installation and operation</li>
+                        <li>Connectivity and hosting providers</li>
+                    </ul>
+                    <p class="small-note">Cities provide the vehicles. We supply the system and software.</p>
+                </div>
+            </section>
+            <section class="block activities" aria-labelledby="activities">
+                <h2 id="activities">Key activities</h2>
+                <div class="body">
+                    <p class="question">What do we do?</p>
+                    <ul>
+                        <li>Develop and test camera kits</li>
+                        <li>Train and validate detection AI</li>
+                        <li>Build dashboards and reports</li>
+                        <li>Detect Potholes and other flaws in the streets</li>
+                    </ul>
+                </div>
+            </section>
+            <section class="block resources" aria-labelledby="resources">
+                <h2 id="resources">Key resources</h2>
+                <div class="body">
+                    <p class="question">What do we need?</p>
+                    <ul>
+                        <li>Cameras and location sensors</li>
+                        <li>AI model and labelled images</li>
+                        <li>Dashboard and data processing</li>
+                        <li>Engineering team and pilot access</li>
+                    </ul>
+                </div>
+            </section>
+            <section class="block value" aria-labelledby="value">
+                <h2 id="value">Value proposition</h2>
+                <div class="body">
+                    <p class="question">What value do we deliver?</p>
+                    <ul>
+                        <li>Scan roads during existing municipal vehicle routes</li>
+                        <li>Detect potholes and other visible surface defects</li>
+                        <li>Report geolocated findings with images and severity estimates</li>
+                        <li>Track changes across repeat scans</li>
+                        <li>efficient and early detection to prevent future costs</li>
+                    </ul>
+                    <p class="small-note">Authorities review findings and decide what action to take.</p>
+                </div>
+            </section>
+            <section class="block relations" aria-labelledby="relations">
+                <h2 id="relations">Customer relationships</h2>
+                <div class="body">
+                    <p class="question">How do we support customers?</p>
+                    <ul>
+                        <li>Pilot projects with road departments</li>
+                        <li>Setup guidance and training</li>
+                        <li>Dedicated technical support</li>
+                        <li>Updates and annual renewals</li>
+                    </ul>
+                </div>
+            </section>
+            <section class="block channels" aria-labelledby="channels">
+                <h2 id="channels">Channels</h2>
+                <div class="body">
+                    <p class="question">How do we reach customers?</p>
+                    <ul>
+                        <li>Direct municipal sales</li>
+                        <li>Local pilots and demonstrations</li>
+                        <li>Municipal networks and events</li>
+                        <li>Cold aquisition</li>
+                        <li>Trade fairs</li>
+                    </ul>
+                </div>
+            </section>
+            <section class="block segments" aria-labelledby="segments">
+                <h2 id="segments">Customer segments</h2>
+                <div class="body">
+                    <p class="question">Who pays for the system?</p>
+                    <ul>
+                        <li>Cities and municipalities</li>
+                        <li>Municipal road and infrastructure departments</li>
+                        <li>Other public road authorities as a later expansion</li>
+                    </ul>
+                    <p class="small-note">Deployment on existing garbage trucks, road sweepers and other suitable municipal vehicles.</p>
+                    <p class="small-note">The public authority is the customer; municipal fleets carry the equipment.</p>
+                </div>
+            </section>
+            <section class="block costs" aria-labelledby="costs">
+                <h2 id="costs">Cost structure</h2>
+                <div class="body">
+                    <p class="question">What are our main costs?</p>
+                    <div class="columns">
+                        <div>
+                            <h3>Fixed costs</h3>
+                            <p>Hardware and AI development, field validation, software maintenance.</p>
+                        </div>
+                        <div>
+                            <h3>Variable costs</h3>
+                            <p>Camera kits, delivery, warranty, connectivity, processing, storage and customer support.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="block revenues" aria-labelledby="revenues">
+                <h2 id="revenues">Revenue streams</h2>
+                <div class="body">
+                    <p class="question">How do we make money?</p>
+                    <div class="columns">
+                        <div>
+                            <h3>One-time product sale</h3>
+                            <p>Camera and sensor kit for each equipped vehicle.</p>
+                        </div>
+                        <div>
+                            <h3>Annual software licence</h3>
+                            <p>Option A: per equipped vehicle.<br>Option B: one general licence per authority.</p>
+                        </div>
+                    </div>
+                    <p class="small-note">Licence includes AI detection, dashboard, reports and updates. Pricing model to be decided.</p>
+                </div>
+            </section>
+        </div>
+        <footer class="footer"><span>Pilot validation: detection accuracy, route coverage and time saved for road teams.</span><span>Concept · 2 November 2026</span></footer>
+    </main>
+</body>
+
+</html>

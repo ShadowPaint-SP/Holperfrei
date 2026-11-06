@@ -1,0 +1,788 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Jobs to be Done Canvas: AIPot</title>
+    <style>
+        :root {
+            color-scheme: light;
+            --foreground: #242631;
+            --muted: #71747b;
+            --card: #fff;
+            --border: #d0d0d0;
+            --radius: 10px;
+            --font-sans: Arial, Helvetica, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            color: var(--foreground);
+            font-family: var(--font-sans);
+            line-height: 1.4;
+        }
+
+        main {
+            max-width: 2000px;
+            margin: auto;
+            padding: 42px 48px 26px;
+        }
+
+        .top {
+            min-height: 93px;
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 24px;
+            align-items: start;
+            background: #fff;
+        }
+
+        h1 {
+            font-size: 44px;
+            letter-spacing: -1.4px;
+            line-height: 1.17;
+            margin: 0 0 17px;
+            font-weight: 750;
+        }
+
+        h1 span {
+            color: #355ee9;
+        }
+
+        .subtitle {
+            color: var(--muted);
+            font-size: 18px;
+            margin: 0;
+        }
+
+        .market {
+            border: 2px solid #3b5ddd;
+            border-radius: 11px;
+            padding: 14px 18px 11px;
+            font-size: 16px;
+            line-height: 1.45;
+        }
+
+        .market strong {
+            color: #365ddc;
+        }
+
+        .canvas {
+            display: grid;
+            grid-template-columns: 360px minmax(0, 1fr);
+            border: 1px solid var(--border);
+            background: #fff;
+        }
+
+        .sidebar {
+            display: grid;
+            grid-template-rows: 265px 205px 205px 205px;
+            border-right: 1px solid var(--border);
+        }
+
+        .side-section {
+            border-bottom: 1px solid var(--border);
+            min-width: 0;
+        }
+
+        .side-section:last-child {
+            border-bottom: 0;
+        }
+
+        h2 {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 16px;
+            line-height: 1.2;
+            margin: 0;
+            min-height: 38px;
+            padding: 9px 14px;
+            color: var(--tone);
+            background: var(--tint);
+            font-weight: 700;
+        }
+
+        .icon {
+            width: 19px;
+            height: 19px;
+            margin-left: auto;
+            flex-shrink: 0;
+            stroke: currentColor;
+            stroke-width: 1.7;
+            fill: none;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .side-notes {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            padding: 10px 14px;
+            align-content: start;
+        }
+
+        .note {
+            background: var(--sticky);
+            border: 1px solid #e3ded8;
+            border-radius: 3px;
+            font-size: 14px;
+            line-height: 1.35;
+            padding: 10px;
+        }
+
+        .side-notes .note {
+            min-height: 54px;
+        }
+
+        .salmon {
+            --tint: #fbe5e4;
+            --sticky: #f5c9c4;
+            --tone: #982d27;
+        }
+
+        .blue {
+            --tint: #e3ecfb;
+            --sticky: #bdd3f4;
+            --tone: #24578a;
+        }
+
+        .purple {
+            --tint: #f1e3ef;
+            --sticky: #e4c5de;
+            --tone: #7d236a;
+        }
+
+        .orange {
+            --tint: #ffe8d4;
+            --sticky: #f9d2a8;
+            --tone: #965314;
+        }
+
+        .lavender {
+            --tint: #ece5f5;
+            --sticky: #d0c0e7;
+            --tone: #503385;
+        }
+
+        .green {
+            --tint: #e8f3dc;
+            --sticky: #cbe2ad;
+            --tone: #3e6827;
+        }
+
+        .teal {
+            --tint: #dceff0;
+            --sticky: #a6d8d6;
+            --tone: #22615e;
+        }
+
+        .yellow {
+            --tint: #fcf0d4;
+            --sticky: #f9dda0;
+            --tone: #88650f;
+        }
+
+        .violet {
+            --tint: #f1e7f5;
+            --sticky: #d9c2e4;
+            --tone: #70388b;
+        }
+
+        .lime {
+            --tint: #eef4d8;
+            --sticky: #cfe2a0;
+            --tone: #516c20;
+        }
+
+        .right {
+            min-width: 0;
+            display: grid;
+            grid-template-rows: 410px 40px 430px;
+        }
+
+        .job-map {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            grid-template-rows: 205px 205px;
+        }
+
+        .step {
+            min-width: 0;
+            border-right: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            position: relative;
+        }
+
+        .step:nth-child(4n) {
+            border-right: 0;
+        }
+
+        .priority {
+            outline: 3px solid #ed8d26;
+            outline-offset: -3px;
+            z-index: 1;
+        }
+
+        .priority-mark {
+            color: #e77820;
+        }
+
+        .step-body {
+            padding: 7px 14px 10px;
+        }
+
+        .verbs {
+            font-size: 13px;
+            margin: 0 0 7px;
+            color: #46484e;
+        }
+
+        .step .note {
+            text-align: center;
+            font-size: 15px;
+            padding: 10px 12px;
+        }
+
+        .desired {
+            background: #fcf5d9;
+            text-align: center;
+            font-weight: 700;
+            color: #7b6418;
+            padding: 10px;
+            font-size: 16px;
+            line-height: 20px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .matrix {
+            position: relative;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+        }
+
+        .quadrant {
+            padding: 12px 16px;
+            min-width: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+        }
+
+        .quadrant h3 {
+            font-size: 16px;
+            margin: 0;
+            font-weight: 400;
+        }
+
+        .quadrant h3 strong {
+            font-weight: 700;
+        }
+
+        .quadrant .notes {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .quadrant .note {
+            width: 150px;
+            text-align: center;
+            font-size: 14px;
+            min-height: 54px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .over {
+            background: #f0ecf6;
+            --sticky: #d2c4ea;
+        }
+
+        .stakes {
+            background: #eef6e5;
+            --sticky: #b8dba0;
+            text-align: right;
+        }
+
+        .stakes .notes,
+        .under .notes {
+            justify-content: flex-end;
+        }
+
+        .irrelevant {
+            background: #faeaea;
+            --sticky: #efb9b5;
+            justify-content: flex-end;
+        }
+
+        .under {
+            background: #e8f0fc;
+            --sticky: #aacbf0;
+            justify-content: flex-end;
+            text-align: right;
+        }
+
+        .under .note {
+            font-weight: 700;
+        }
+
+        .diamond {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 170px;
+            height: 170px;
+            transform: translate(-50%, -50%) rotate(45deg);
+            background: #fcf5d9;
+            border: 1px solid #dfd3a2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .diamond-content {
+            transform: rotate(-45deg);
+            text-align: center;
+            width: 170px;
+            flex-shrink: 0;
+            font-size: 14px;
+            line-height: 1.2;
+        }
+
+        .diamond .note {
+            --sticky: #f9dfa0;
+            font-size: 13px;
+            padding: 9px 10px;
+            width: 150px;
+            margin: 0 auto 7px;
+        }
+
+        .diamond strong {
+            display: block;
+            color: #796315;
+        }
+
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            font-size: 12px;
+            color: #90949b;
+            margin-top: 8px;
+            background: #fff;
+        }
+
+        @media(min-width:2001px) {
+            main {
+                padding-left: 32px;
+                padding-right: 32px;
+            }
+        }
+
+        @media(max-width:1600px) and (min-width:1101px) {
+            main {
+                padding: 28px 28px 20px;
+            }
+
+            .canvas {
+                grid-template-columns: 300px minmax(0, 1fr);
+            }
+
+            h1 {
+                font-size: 34px;
+            }
+
+            .market {
+                font-size: 14px;
+                padding: 10px 12px;
+            }
+
+            .subtitle {
+                font-size: 15px;
+            }
+
+            .top {
+                min-height: 85px;
+            }
+
+            .quadrant .note {
+                width: 124px;
+                font-size: 13px;
+            }
+
+            .note {
+                font-size: 13px;
+            }
+
+            .step .note {
+                font-size: 14px;
+            }
+        }
+
+        @media(max-width:1100px) {
+            main {
+                padding: 16px;
+            }
+
+            .top {
+                grid-template-columns: 1fr;
+                gap: 14px;
+                margin-bottom: 16px;
+            }
+
+            h1 {
+                font-size: 32px;
+                margin-bottom: 10px;
+            }
+
+            .subtitle {
+                font-size: 15px;
+            }
+
+            .market {
+                font-size: 14px;
+            }
+
+            .canvas {
+                display: flex;
+                flex-direction: column;
+            }
+
+            .sidebar {
+                grid-template-columns: 1fr 1fr;
+                grid-template-rows: auto auto;
+                border-right: 0;
+                border-bottom: 1px solid var(--border);
+            }
+
+            .side-section {
+                min-height: 190px;
+            }
+
+            .side-section:nth-child(odd) {
+                border-right: 1px solid var(--border);
+            }
+
+            .side-section:nth-child(n+3) {
+                border-bottom: 0;
+            }
+
+            .right {
+                display: block;
+            }
+
+            .job-map {
+                grid-template-columns: 1fr 1fr;
+                grid-template-rows: repeat(4, minmax(150px, auto));
+            }
+
+            .step:nth-child(2n) {
+                border-right: 0;
+            }
+
+            .matrix {
+                grid-template-rows: minmax(245px, auto) minmax(245px, auto);
+            }
+
+            .quadrant .note {
+                width: 140px;
+            }
+
+            .diamond {
+                width: 140px;
+                height: 140px;
+            }
+
+            .diamond-content {
+                width: 145px;
+                font-size: 12px;
+            }
+
+            .diamond .note {
+                width: 125px;
+                font-size: 12px;
+            }
+
+            .footer {
+                flex-direction: column;
+                gap: 6px;
+            }
+        }
+
+        @media(max-width:620px) {
+            .sidebar {
+                display: block;
+            }
+
+            .side-section {
+                border-right: 0 !important;
+                border-bottom: 1px solid var(--border) !important;
+                min-height: 0;
+                padding-bottom: 10px;
+            }
+
+            .job-map {
+                display: block;
+            }
+
+            .step {
+                min-height: 150px;
+                border-right: 0;
+            }
+
+            .matrix {
+                display: flex;
+                flex-direction: column;
+            }
+
+            .quadrant {
+                min-height: 170px;
+                text-align: left;
+            }
+
+            .quadrant .notes {
+                justify-content: flex-start;
+            }
+
+            .irrelevant,
+            .under {
+                justify-content: flex-start;
+            }
+
+            .irrelevant h3,
+            .under h3 {
+                order: -1;
+            }
+
+            .diamond {
+                position: static;
+                order: 5;
+                width: auto;
+                height: auto;
+                transform: none;
+                padding: 20px;
+                border: 0;
+            }
+
+            .diamond-content {
+                transform: none;
+                width: 100%;
+                font-size: 14px;
+            }
+
+            .diamond .note {
+                width: 180px;
+                font-size: 14px;
+            }
+
+            .quadrant .note {
+                flex: 1 1 120px;
+            }
+        }
+
+        @media print {
+            main {
+                padding: 16px;
+            }
+
+            * {
+                print-color-adjust: exact;
+                -webkit-print-color-adjust: exact;
+            }
+
+            @page {
+                size: A3 landscape;
+                margin: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <header class="top">
+            <div>
+                <h1>Jobs to be Done Canvas : <span>Holperfrei</span></h1>
+                <p class="subtitle">KI-Schlaglocherkennung für Dresden · Segment: city road maintenance</p>
+            </div>
+            <div class="market"><strong>Market =</strong> road maintenance planners at the Straßen- und Tiefbauamt Dresden <strong>(job executor)</strong> + keeping city roads safe and drivable all year within a fixed budget and limited staff <strong>(job to be done)</strong></div>
+        </header>
+        <div class="canvas">
+            <aside class="sidebar" aria-label="Customer jobs and switching barriers">
+                <section class="side-section salmon">
+                    <h2>Consumption jobs<svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="m5 18 7-7m-4-7 8 8m-5-9 8 8m-3-4 3-3M3 18l3 3 8-8" />
+                        </svg></h2>
+                    <div class="side-notes">
+                        <div class="note ">Keep roads safe &amp;<br> drivable</div>
+                        <div class="note ">Fix damage before it spreads</div>
+                        <div class="note ">Justify the budget to council</div>
+                        <div class="note ">Document repairs<br> for liability</div>
+                    </div>
+                </section>
+                <section class="side-section blue">
+                    <h2>Related jobs<svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                            <circle cx="5" cy="12" r="3" />
+                            <circle cx="19" cy="5" r="3" />
+                            <circle cx="19" cy="19" r="3" />
+                            <path d="m8 11 8-5M8 13l8 5" />
+                        </svg></h2>
+                    <div class="side-notes">
+                        <div class="note ">Manage winter<br> service</div>
+                        <div class="note ">Handle citizen complaints</div>
+                        <div class="note ">Coordinate<br> contractors</div>
+                    </div>
+                </section>
+                <section class="side-section purple">
+                    <h2>Emotional &amp; social jobs<svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M12 21 3 12C-4 4 7-3 12 6c5-9 16-2 9 6l-9 9Z" fill="currentColor" stroke="none" />
+                        </svg></h2>
+                    <div class="side-notes">
+                        <div class="note ">Feel in control of the network</div>
+                        <div class="note ">Not fear a missed dangerous pothole</div>
+                        <div class="note ">Look competent to council</div>
+                        <div class="note ">Avoid negative press</div>
+                    </div>
+                </section>
+                <section class="side-section orange">
+                    <h2>Opposition (why not switch)<svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="m12 2 11 20H1L12 2Zm0 6v7m0 3v1" />
+                        </svg></h2>
+                    <div class="side-notes">
+                        <div class="note "><strong>Inertia:</strong> inspection drives always worked</div>
+                        <div class="note "><strong>Anxiety:</strong> GDPR, tender effort, trusting AI</div>
+                    </div>
+                </section>
+            </aside>
+            <div class="right">
+                <div class="job-map" aria-label="Eight stages of the job">
+                    <section class="step lavender">
+                        <h2>1. Define<svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="m4 16 12-12 4 4L8 20H4Zm9-9 4 4" />
+                            </svg></h2>
+                        <div class="step-body">
+                            <p class="verbs">Plan, select, determine</p>
+                            <div class="note ">I want to plan which roads to check and when</div>
+                        </div>
+                    </section>
+                    <section class="step salmon priority">
+                        <h2><span class="priority-mark">!!!</span> 2. Locate<svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M12 22s7-8 7-14a7 7 0 0 0-14 0c0 6 7 14 7 14Z" />
+                                <circle cx="12" cy="8" r="2" />
+                            </svg></h2>
+                        <div class="step-body">
+                            <p class="verbs">Gather, access, retrieve</p>
+                            <div class="note ">I want to find every damaged spot quickly</div>
+                        </div>
+                    </section>
+                    <section class="step green priority">
+                        <h2><span class="priority-mark">!!!</span> 3. Prepare<svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M12 7v5M5 17v-5h14v5" />
+                                <path d="M9 2h6v5H9ZM2 17h6v5H2Zm14 0h6v5h-6Z" />
+                            </svg></h2>
+                        <div class="step-body">
+                            <p class="verbs">Set up, organize, examine</p>
+                            <div class="note ">I want to know which damage is most urgent</div>
+                        </div>
+                    </section>
+                    <section class="step blue">
+                        <h2>4. Confirm<svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="m2 5 2 2 3-4m3 2h12M2 12l2 2 3-4m3 2h12M2 19l2 2 3-4m3 2h12" />
+                            </svg></h2>
+                        <div class="step-body">
+                            <p class="verbs">Validate, prioritize, decide</p>
+                            <div class="note ">I want to be sure damage is real before sending a crew</div>
+                        </div>
+                    </section>
+                    <section class="step teal">
+                        <h2>5. Execute<svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="m3 19 9-9m2-8a6 6 0 0 0-5 8l-7 7 5 5 7-7a6 6 0 0 0 8-7l-5 3-4-4 1-5Z" />
+                            </svg></h2>
+                        <div class="step-body">
+                            <p class="verbs">Perform, transact, administer</p>
+                            <div class="note ">I want to send crews to clustered repairs efficiently</div>
+                        </div>
+                    </section>
+                    <section class="step yellow">
+                        <h2>6. Monitor<svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M1 12S5 5 12 5s11 7 11 7-4 7-11 7S1 12 1 12Z" />
+                                <circle cx="12" cy="12" r="3" />
+                            </svg></h2>
+                        <div class="step-body">
+                            <p class="verbs">Verify, track, check</p>
+                            <div class="note ">I want to see if new damage appears after repair</div>
+                        </div>
+                    </section>
+                    <section class="step violet">
+                        <h2>7. Modify<svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M21 9A9 9 0 0 0 5 5L2 8m0-6v6h6m-5 7a9 9 0 0 0 16 4l3-3m0 6v-6h-6" />
+                            </svg></h2>
+                        <div class="step-body">
+                            <p class="verbs">Update, adjust, maintain</p>
+                            <div class="note ">I want to reprioritize fast after storms or complaints</div>
+                        </div>
+                    </section>
+                    <section class="step lime">
+                        <h2>8. Conclude<svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M8 4H4v18h16V4h-4M8 1h8v6H8Zm0 13 3 3 6-7" />
+                            </svg></h2>
+                        <div class="step-body">
+                            <p class="verbs">Store, finish, close</p>
+                            <div class="note ">I want a ready report for the council</div>
+                        </div>
+                    </section>
+                </div>
+                <div class="desired">Desired solution</div>
+                <section class="matrix" aria-label="Desired solution priorities">
+                    <div class="quadrant over">
+                        <h3><strong>Overserved</strong> (reduce cost / complexity)</h3>
+                        <div class="notes">
+                            <div class="note ">Live video<br> streaming</div>
+                            <div class="note ">3D road models</div>
+                        </div>
+                    </div>
+                    <div class="quadrant stakes">
+                        <h3><strong>Table stakes</strong> (must address)</h3>
+                        <div class="notes">
+                            <div class="note ">GDPR blurring of<br> faces &amp; plates</div>
+                            <div class="note ">Reliable detection<br> accuracy</div>
+                            <div class="note ">Works with their<br> GIS</div>
+                        </div>
+                    </div>
+                    <div class="quadrant irrelevant">
+                        <div class="notes">
+                            <div class="note ">Driver monitoring</div>
+                            <div class="note ">Social media<br> sharing</div>
+                        </div>
+                        <h3><strong>Irrelevant</strong> (do not address)</h3>
+                    </div>
+                    <div class="quadrant under">
+                        <div class="notes">
+                            <div class="note ">Early detection</div>
+                            <div class="note ">Weekly full<br> coverage</div>
+                            <div class="note ">Objective severity<br> ranking</div>
+                        </div>
+                        <h3><strong>Underserved</strong> (add value)</h3>
+                    </div>
+                    <div class="diamond">
+                        <div class="diamond-content">
+                            <div class="note ">Citizen reports by<br> phone / email</div><strong>Appropriately served</strong>(keep, complement)
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+        <footer class="footer"><span>Based on Christensen, <strong><em>Competing Against Luck</em></strong> (2016) · Ulwick, <strong><em>Jobs to be Done</em></strong> (2016)</span><span>Holperfrei · TU Dresden</span></footer>
+    </main>
+</body>
+
+</html>
