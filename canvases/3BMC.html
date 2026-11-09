@@ -1,0 +1,424 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Triple Layer BMC: Holperfrei</title>
+<style>
+:root { color-scheme: light; --paper: #f6f6fb; --ink: #20232b; --muted: #626670; --line: #e4e4e9; }
+* { box-sizing: border-box; }
+body { margin: 0; font-family: Arial, Helvetica, sans-serif; color: var(--ink); }
+main { display: grid; gap: 24px; }
+.layer { --accent: #3059e9; background: var(--paper); padding: 28px 4.15% 18px; }
+.environmental { --accent: #2e885a; }
+.social { --accent: #c33c06; }
+header { text-align: center; margin-bottom: 16px; }
+h1, h2 { margin: 0 0 4px; font-size: clamp(28px, 3.5vw, 46px); letter-spacing: -1.5px; line-height: 1.15; }
+header span, header strong { color: var(--accent); }
+header p { margin: 0; color: var(--muted); font-size: 16px; line-height: 1.5; }
+.grid { display: grid; grid-template-columns: repeat(10, minmax(0, 1fr)); grid-template-rows: minmax(182px, auto) minmax(182px, auto) minmax(184px, auto); gap: 10px; }
+.block { min-width: 0; border: 1px solid var(--line); background: white; }
+.block:nth-child(1) { grid-area: 1 / 1 / 3 / 3; }
+.block:nth-child(2) { grid-area: 1 / 3 / 2 / 5; }
+.block:nth-child(3) { grid-area: 2 / 3 / 3 / 5; }
+.block:nth-child(4) { grid-area: 1 / 5 / 3 / 7; }
+.block:nth-child(5) { grid-area: 1 / 7 / 2 / 9; }
+.block:nth-child(6) { grid-area: 2 / 7 / 3 / 9; }
+.block:nth-child(7) { grid-area: 1 / 9 / 3 / 11; }
+.block:nth-child(8) { grid-area: 3 / 1 / 4 / 6; }
+.block:nth-child(9) { grid-area: 3 / 6 / 4 / 11; }
+h3 { margin: 0; padding: 8px 6px; background: var(--accent); color: white; font-size: 13px; font-weight: 600; letter-spacing: .4px; line-height: 1.15; text-align: center; text-transform: uppercase; }
+.content { padding: 8px 10px; }
+.question { margin: 0 0 8px; font-size: 12px; color: #777; }
+ul { padding-left: 17px; margin: 0; }
+li { padding-left: 0; margin-bottom: 5px; font-size: 15px; line-height: 1.4; }
+li:last-child { margin-bottom: 0; }
+.columns { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+footer { display: flex; justify-content: space-between; gap: 16px; margin-top: 7px; font-size: 9px; color: #85858b; }
+@media (max-width: 1000px) {
+ .layer { padding: 24px 16px 16px; }
+ .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: auto; }
+ .block:nth-child(n) { grid-area: auto; }
+ .block:nth-child(4), .block:nth-child(8), .block:nth-child(9) { grid-column: 1 / -1; }
+ h1, h2 { letter-spacing: -1px; }
+}
+@media (max-width: 540px) {
+ .grid, .columns { grid-template-columns: 1fr; }
+ .block:nth-child(n) { grid-column: 1; }
+ .columns { gap: 5px; }
+ footer { flex-direction: column; gap: 4px; }
+}
+@media print {
+ @page { size: A3 landscape; margin: 10mm; }
+ * { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+ main { display: block; }
+ .layer { break-after: page; padding: 0; }
+ .layer:last-child { break-after: auto; }
+ .grid { grid-template-columns: repeat(10, minmax(0, 1fr)); grid-template-rows: minmax(182px, auto) minmax(182px, auto) minmax(184px, auto); }
+ .block:nth-child(1) { grid-area: 1 / 1 / 3 / 3; }
+ .block:nth-child(2) { grid-area: 1 / 3 / 2 / 5; }
+ .block:nth-child(3) { grid-area: 2 / 3 / 3 / 5; }
+ .block:nth-child(4) { grid-area: 1 / 5 / 3 / 7; }
+ .block:nth-child(5) { grid-area: 1 / 7 / 2 / 9; }
+ .block:nth-child(6) { grid-area: 2 / 7 / 3 / 9; }
+ .block:nth-child(7) { grid-area: 1 / 9 / 3 / 11; }
+ .block:nth-child(8) { grid-area: 3 / 1 / 4 / 6; }
+ .block:nth-child(9) { grid-area: 3 / 6 / 4 / 11; }
+ .columns { grid-template-columns: 1fr 1fr; }
+}
+</style>
+</head>
+<body>
+<main>
+    <!-- Layer 1: edit the text directly in the blocks below. Shared styles are above. -->
+    <section class="layer economic" aria-labelledby="economic-title">
+        <header>
+            <h1 id="economic-title">Triple Layer BMC : <span>Holperfrei</span></h1>
+            <p>Layer 1 of 3 · <strong>Economic layer</strong> (classic Business Model Canvas)</p>
+        </header>
+        <div class="grid">
+            <section class="block" aria-labelledby="economic-0">
+                <h3 id="economic-0">Key partners</h3>
+                <div class="content">
+                    <p class="question">Who are your key partners?</p>
+                    <ul>
+                            <li>Municipal waste operator (garbage trucks as camera carriers)</li>
+                            <li>DVB (public transport buses)</li>
+                            <li>Delivery services (DHL etc.)</li>
+                            <li>City of Dresden, Saxon road authority</li>
+                            <li>TU Dresden, research institutes</li>
+                            <li>Hardware and cloud suppliers</li>
+                        </ul>
+                </div>
+            </section>
+            <section class="block" aria-labelledby="economic-1">
+                <h3 id="economic-1">Key activities</h3>
+                <div class="content">
+                    <ul>
+                            <li>Collecting and labeling road images</li>
+                            <li>Training and improving the AI model</li>
+                            <li>Building dashboard and API</li>
+                            <li>Pilots with city and fleets</li>
+                            <li>GDPR compliance (blurring)</li>
+                        </ul>
+                </div>
+            </section>
+            <section class="block" aria-labelledby="economic-2">
+                <h3 id="economic-2">Key resources</h3>
+                <div class="content">
+                    <ul>
+                            <li>AI model and Dresden road dataset</li>
+                            <li>Camera units on partner vehicles</li>
+                            <li>Cloud platform</li>
+                        </ul>
+                </div>
+            </section>
+            <section class="block" aria-labelledby="economic-3">
+                <h3 id="economic-3">Value proposition</h3>
+                <div class="content">
+                    <p class="question">What value do you deliver?</p>
+                    <ul>
+                            <li>Find damage early, so repairs cost less</li>
+                            <li>Every street checked every week</li>
+                            <li>No extra staff or vehicles</li>
+                            <li>Damage map with severity ranking</li>
+                            <li>Ready reports for the council</li>
+                        </ul>
+                </div>
+            </section>
+            <section class="block" aria-labelledby="economic-4">
+                <h3 id="economic-4">Customer relationships</h3>
+                <div class="content">
+                    <ul>
+                            <li>Dedicated support for city departments</li>
+                            <li>Self-service dashboard with alerts</li>
+                            <li>Pilot projects and co-creation</li>
+                        </ul>
+                </div>
+            </section>
+            <section class="block" aria-labelledby="economic-5">
+                <h3 id="economic-5">Channels</h3>
+                <div class="content">
+                    <ul>
+                            <li>Direct sales and public tenders</li>
+                            <li>Pilot in Dresden as reference</li>
+                            <li>Web dashboard and API</li>
+                            <li>Smart City events</li>
+                        </ul>
+                </div>
+            </section>
+            <section class="block" aria-labelledby="economic-6">
+                <h3 id="economic-6">Customer segments</h3>
+                <div class="content">
+                    <p class="question">Who are your customers?</p>
+                    <ul>
+                            <li>City road departments (Dresden, then Saxony)</li>
+                            <li>Construction companies (repair jobs)</li>
+                            <li>Insurers</li>
+                            <li>Navigation and map providers</li>
+                            <li>Fleet operators</li>
+                        </ul>
+                </div>
+            </section>
+            <section class="block" aria-labelledby="economic-7">
+                <h3 id="economic-7">Cost structure</h3>
+                <div class="content">
+                    <div class="columns">
+                        <ul>
+                            <li>Fixed: team salaries</li>
+                            <li>Fixed: cloud hosting and storage</li>
+                            <li>Fixed: AI training and development</li>
+                            <li>Fixed: legal and GDPR advice</li>
+                            <li>Variable: camera hardware per vehicle</li>
+                        </ul>
+                        <ul>
+                            <li>Variable: installation and maintenance</li>
+                            <li>Variable: fee per truck to fleet partners</li>
+                            <li>Variable: data labeling</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            <section class="block" aria-labelledby="economic-8">
+                <h3 id="economic-8">Revenue streams</h3>
+                <div class="content">
+                    <div class="columns">
+                        <ul>
+                            <li>Yearly city subscription per km of road</li>
+                            <li>One-time setup and pilot fees</li>
+                            <li>Data licensing to insurers</li>
+                        </ul>
+                        <ul>
+                            <li>Data licensing to navigation providers</li>
+                            <li>Repair job lists for construction companies</li>
+                            <li>Grants in early phase (EXIST, mFUND)</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <footer><span>Triple Layer Business Model Canvas after Joyce &amp; Paquin (2016)</span><span>Holperfrei · TU Dresden</span></footer>
+    </section>
+    <!-- Layer 2: edit the text directly in the blocks below. Shared styles are above. -->
+    <section class="layer environmental" aria-labelledby="environmental-title">
+        <header>
+            <h2 id="environmental-title">Triple Layer BMC : <span>Holperfrei</span></h2>
+            <p>Layer 2 of 3 · <strong>Environmental layer</strong> (life-cycle view)</p>
+        </header>
+        <div class="grid">
+            <section class="block" aria-labelledby="environmental-0">
+                <h3 id="environmental-0">Supplies &amp; outsourcing</h3>
+                <div class="content">
+                    <ul>
+                            <li>Camera and edge-computing hardware from suppliers</li>
+                            <li>Cloud provider, ideally on green energy</li>
+                            <li>Installation by own team, no extra vehicles</li>
+                        </ul>
+                </div>
+            </section>
+            <section class="block" aria-labelledby="environmental-1">
+                <h3 id="environmental-1">Production</h3>
+                <div class="content">
+                    <ul>
+                            <li>Assembling camera units</li>
+                            <li>Training the AI model (energy use)</li>
+                            <li>Software development</li>
+                        </ul>
+                </div>
+            </section>
+            <section class="block" aria-labelledby="environmental-2">
+                <h3 id="environmental-2">Materials</h3>
+                <div class="content">
+                    <ul>
+                            <li>Cameras, chips, mounts, cables</li>
+                            <li>Durable, repairable parts</li>
+                        </ul>
+                </div>
+            </section>
+            <section class="block" aria-labelledby="environmental-3">
+                <h3 id="environmental-3">Functional value</h3>
+                <div class="content">
+                    <ul>
+                            <li>Weekly condition check of a city’s road network</li>
+                            <li>Detect and rank road damage, without dedicated inspection trips</li>
+                        </ul>
+                </div>
+            </section>
+            <section class="block" aria-labelledby="environmental-4">
+                <h3 id="environmental-4">End of life</h3>
+                <div class="content">
+                    <ul>
+                            <li>Move cameras to new vehicles</li>
+                            <li>Take back and refurbish units</li>
+                            <li>Certified e-waste recycling</li>
+                        </ul>
+                </div>
+            </section>
+            <section class="block" aria-labelledby="environmental-5">
+                <h3 id="environmental-5">Distribution</h3>
+                <div class="content">
+                    <ul>
+                            <li>Mounted on vehicles that drive anyway</li>
+                            <li>Software delivered online</li>
+                        </ul>
+                </div>
+            </section>
+            <section class="block" aria-labelledby="environmental-6">
+                <h3 id="environmental-6">Use phase</h3>
+                <div class="content">
+                    <ul>
+                            <li>Low power, runs on vehicle power</li>
+                            <li>Images processed on the device</li>
+                            <li>Only results uploaded, less data traffic</li>
+                            <li>No extra driving needed</li>
+                        </ul>
+                </div>
+            </section>
+            <section class="block" aria-labelledby="environmental-7">
+                <h3 id="environmental-7">Environmental impacts</h3>
+                <div class="content">
+                    <div class="columns">
+                        <ul>
+                            <li>Electronic waste from hardware</li>
+                            <li>Raw materials in chips and cameras</li>
+                            <li>Energy for AI training</li>
+                        </ul>
+                        <ul>
+                            <li>Energy for cloud storage</li>
+                            <li>Small extra weight and power on vehicles</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            <section class="block" aria-labelledby="environmental-8">
+                <h3 id="environmental-8">Environmental benefits</h3>
+                <div class="content">
+                    <div class="columns">
+                        <ul>
+                            <li>No extra inspection drives, less CO₂</li>
+                            <li>Early small repairs need less asphalt</li>
+                            <li>Fewer big road rebuilds</li>
+                        </ul>
+                        <ul>
+                            <li>Smoother roads, less fuel and tyre wear</li>
+                            <li>Longer road life</li>
+                            <li>Better repair planning, fewer crew trips</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <footer><span>Triple Layer Business Model Canvas after Joyce &amp; Paquin (2016)</span><span>Holperfrei · TU Dresden</span></footer>
+    </section>
+    <!-- Layer 3: edit the text directly in the blocks below. Shared styles are above. -->
+    <section class="layer social" aria-labelledby="social-title">
+        <header>
+            <h2 id="social-title">Triple Layer BMC : <span>Holperfrei</span></h2>
+            <p>Layer 3 of 3 · <strong>Social layer</strong> (stakeholder view)</p>
+        </header>
+        <div class="grid">
+            <section class="block" aria-labelledby="social-0">
+                <h3 id="social-0">Local communities</h3>
+                <div class="content">
+                    <ul>
+                            <li>Dresden residents and road users</li>
+                            <li>TU Dresden and student community</li>
+                            <li>Local construction companies</li>
+                            <li>Waste operator and its drivers</li>
+                        </ul>
+                </div>
+            </section>
+            <section class="block" aria-labelledby="social-1">
+                <h3 id="social-1">Governance</h3>
+                <div class="content">
+                    <ul>
+                            <li>Student startup, founders own it</li>
+                            <li>Clear data protection rules</li>
+                            <li>Open about data use with the city</li>
+                        </ul>
+                </div>
+            </section>
+            <section class="block" aria-labelledby="social-2">
+                <h3 id="social-2">Employees</h3>
+                <div class="content">
+                    <ul>
+                            <li>Small tech team in Dresden</li>
+                            <li>Fair Werkstudent and local jobs</li>
+                        </ul>
+                </div>
+            </section>
+            <section class="block" aria-labelledby="social-3">
+                <h3 id="social-3">Social value</h3>
+                <div class="content">
+                    <ul>
+                            <li>Safer roads for drivers, cyclists and pedestrians</li>
+                            <li>Public money spent where it is needed most</li>
+                        </ul>
+                </div>
+            </section>
+            <section class="block" aria-labelledby="social-4">
+                <h3 id="social-4">Societal culture</h3>
+                <div class="content">
+                    <ul>
+                            <li>Trust in a city that fixes problems fast</li>
+                            <li>Responsible, privacy-first use of data</li>
+                        </ul>
+                </div>
+            </section>
+            <section class="block" aria-labelledby="social-5">
+                <h3 id="social-5">Scale of outreach</h3>
+                <div class="content">
+                    <ul>
+                            <li>Dresden, then Saxony, then Germany</li>
+                            <li>Small towns that could never afford surveys</li>
+                        </ul>
+                </div>
+            </section>
+            <section class="block" aria-labelledby="social-6">
+                <h3 id="social-6">End user</h3>
+                <div class="content">
+                    <ul>
+                            <li>Road maintenance planners at the city</li>
+                            <li>Indirectly every citizen who uses the roads</li>
+                            <li>Need: find damage early, decide what to fix first</li>
+                        </ul>
+                </div>
+            </section>
+            <section class="block" aria-labelledby="social-7">
+                <h3 id="social-7">Social impacts</h3>
+                <div class="content">
+                    <div class="columns">
+                        <ul>
+                            <li>Privacy concerns about cameras</li>
+                            <li>Drivers may feel watched</li>
+                        </ul>
+                        <ul>
+                            <li>Fear that inspection jobs change</li>
+                            <li>Trust risk if AI makes mistakes</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            <section class="block" aria-labelledby="social-8">
+                <h3 id="social-8">Social benefits</h3>
+                <div class="content">
+                    <div class="columns">
+                        <ul>
+                            <li>Fewer accidents and injuries</li>
+                            <li>Fewer damaged cars and bikes</li>
+                            <li>Faster answers to citizen complaints</li>
+                        </ul>
+                        <ul>
+                            <li>Tax money saved</li>
+                            <li>Inspectors freed for higher-value work</li>
+                            <li>Fairer repairs across all districts</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <footer><span>Triple Layer Business Model Canvas after Joyce &amp; Paquin (2016)</span><span>Holperfrei · TU Dresden</span></footer>
+    </section>
+</main>
+</body>
+</html>
