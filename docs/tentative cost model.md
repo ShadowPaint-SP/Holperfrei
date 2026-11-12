@@ -1,6 +1,6 @@
 # Tentative numbers: Holperfrei
 
-*These are the inputs behind the cost & revenue model. **Real** means the number comes from a source; **Estimate** means it's our guess and can go up or down. Change them in [`models/Holperfrei_Cost_Revenue_Model.xlsx`](../models/Holperfrei_Cost_Revenue_Model.xlsx) (blue cells, Assumptions sheet) and everything else recalculates. Full explanation: [`cost-revenue-model.md`](cost-revenue-model.md).*
+*These are the inputs behind the cost & revenue model. **Real** means the number comes from a source; **Estimate** means it's our guess and can go up or down. 
 
 
 ## Market anchors (real numbers)

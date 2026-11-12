@@ -1,6 +1,6 @@
 # Cost & Revenue Model: Holperfrei
 
-*Idea-pitch version, November 2026. Every number here is a first estimate and will change once we run the pilot. The editable model is [`models/Holperfrei_Cost_Revenue_Model.xlsx`](../models/Holperfrei_Cost_Revenue_Model.xlsx), the list of tentative numbers is [`tentative-numbers.md`](tentative-numbers.md), and the one-page canvas is [`canvases/CRM.html`](../canvases/CRM.html).*
+*Idea-pitch version, November 2026. Every number here is a first estimate and will change once we run the pilot. 
 
 ## In one sentence
 
