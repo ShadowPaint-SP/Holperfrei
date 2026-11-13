@@ -1,118 +1,155 @@
-<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Holperfrei NABC Pitch Canvas</title>
-<meta name="claude:viewport-fit-sides" content="cover">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Permanent+Marker&display=swap">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Permanent+Marker&display=swap">
 <style>
-/* Layout: the dresden|exists NABC Pitch Canvas. Six numbered boxes top to bottom: Hook, Need, Approach beside Benefits with a Vision star between them, Competition, one-sentence Rounding off, and the pitcher figure at the lower right. Drawn marker look, kept the same in both themes. */
+/* dresden|exists NABC Pitch Canvas: Hook, Need, Approach | Vision | Benefits, Competition, Rounding off, pitcher figure.
+   The Vision star has its own middle column, so it never covers text at any width. */
 :root {
   color-scheme: light;
-  --paper: #ffffff; --ink: #16303f; --page: #eef1f3; --chip: #e3eff4; --muted: #4c6572;
-  --marker: "Permanent Marker", "Comic Sans MS", Arial, sans-serif;
+  --paper: #ffffff; --ink: #16303f; --page: #eef1f3; --chip: #e3eff4; --muted: #4c6572; --accent: #2f6db5;
+  --line: 5px;
+  --marker: "Permanent Marker", "Comic Sans MS", "Chalkboard SE", cursive;
   --body: "Inter", Arial, Helvetica, sans-serif;
 }
 * { box-sizing: border-box; }
-body { margin: 0; background: var(--page); color: var(--ink); font-family: var(--body); font-size: 15px; line-height: 1.45;
-  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 16px; }
-.sheet { max-width: 860px; margin: 0 auto; background: var(--paper); padding: 22px 24px 14px; }
-h1 { margin: 0 0 12px; font-family: var(--marker); font-weight: 400; font-size: 40px; letter-spacing: 1px; line-height: 1.05; }
-.canvas { border: 5px solid var(--ink); display: grid; grid-template-columns: 70% 30%; grid-template-areas: "hook hook" "need need" "mid mid" "comp fig" "round fig"; min-width: 0; }
-.cell { padding: 10px 16px 12px; min-width: 0; border-top: 5px solid var(--ink); }
-.hook { grid-area: hook; border-top: 0; } .need { grid-area: need; } .comp { grid-area: comp; }
-.round { grid-area: round; border-right: 5px solid var(--ink); border-bottom: 0; }
-.comp { border-right: 5px solid var(--ink); }
-.lab { font-family: var(--marker); font-size: 19px; text-transform: uppercase; display: flex; align-items: center; gap: 8px; margin-bottom: 4px; }
-.num { width: 26px; height: 26px; border: 2px solid var(--ink); border-radius: 50%; display: grid; place-items: center; font-size: 14px; flex: none; }
+body { margin: 0; background: var(--page); color: var(--ink); font-family: var(--body); font-size: 15px; line-height: 1.45; padding: 16px; }
+.sheet { max-width: 900px; margin: 0 auto; background: var(--paper); padding: 24px 26px 16px; }
+h1 { margin: 0 0 14px; font-family: var(--marker); font-weight: 400; font-size: 40px; letter-spacing: 1px; line-height: 1.05; }
+p { margin: 0 0 7px; } p:last-child { margin-bottom: 0; }
+b { font-weight: 700; }
+
+.canvas { border: var(--line) solid var(--ink); }
+.cell { padding: 11px 16px 13px; min-width: 0; }
+.row + .row { border-top: var(--line) solid var(--ink); }
+
+.lab { font-family: var(--marker); font-size: 19px; text-transform: uppercase; display: flex; align-items: center; gap: 9px; margin-bottom: 6px; line-height: 1.1; }
+.num { width: 27px; height: 27px; border: 2px solid var(--ink); border-radius: 50%; display: grid; place-items: center; font-size: 14px; flex: none; }
 .chip { margin-left: auto; font-family: var(--body); font-size: 12px; font-weight: 600; background: var(--chip); padding: 2px 8px; text-transform: none; white-space: nowrap; }
-p { margin: 0 0 6px; } p:last-child { margin-bottom: 0; }
-.mid { grid-area: mid; position: relative; display: grid; grid-template-columns: 1fr 1fr; border-top: 5px solid var(--ink); }
-.mid .cell { border-top: 0; }
-.mid .cell:first-child { padding-right: 112px; border-right: 5px solid var(--ink); }
-.mid .cell:last-child { padding-left: 112px; }
-.vision { position: absolute; left: 50%; top: 52%; width: 210px; height: 160px; transform: translate(-50%, -50%); display: grid; place-items: center; }
-.vision svg { position: absolute; inset: 0; width: 100%; height: 100%; }
-.vision div { position: relative; width: 128px; text-align: center; font-size: 12px; line-height: 1.3; font-weight: 600; margin-top: 6px; }
-.vision small { display: block; font-family: var(--marker); font-weight: 400; font-size: 13px; margin-bottom: 2px; }
-.fig { grid-area: fig; grid-row: 4 / 6; display: grid; align-items: end; justify-items: center; padding: 6px; border-top: 5px solid var(--ink); border-top-color: transparent; }
-.fig svg { width: 100%; max-width: 190px; height: auto; display: block; }
+
+/* Approach | Vision | Benefits */
+.mid { display: grid; grid-template-columns: minmax(0, 1fr) 164px minmax(0, 1fr); }
+.vision-col { position: relative; display: grid; place-items: center; }
+.vision-col::before { content: ""; position: absolute; top: 0; bottom: 0; left: 50%; width: var(--line); transform: translateX(-50%); background: var(--ink); }
+.star { position: relative; width: 164px; height: 152px; display: grid; place-items: center; }
+.star svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.star-text { position: relative; width: 100px; text-align: center; font-size: 11.5px; line-height: 1.25; font-weight: 700; }
+.star-text small { display: block; font-family: var(--marker); font-weight: 400; font-size: 13px; margin-bottom: 2px; color: var(--accent); }
+
+/* Competition + Rounding off | figure */
+.bottom { display: grid; grid-template-columns: minmax(0, 1fr) 210px; }
+.bottom .stack { border-right: var(--line) solid var(--ink); }
+.bottom .stack .cell + .cell { border-top: var(--line) solid var(--ink); }
+.fig { display: grid; align-items: end; justify-items: center; padding: 10px 8px 0; }
+.fig svg { width: 100%; max-width: 180px; height: auto; display: block; }
+
+.usp { margin-top: 12px; border: 2px dashed var(--ink); padding: 8px 12px; font-size: 14px; text-align: center; }
+.usp span { font-family: var(--marker); margin-right: 6px; }
 .foot { margin-top: 10px; font-size: 11px; color: var(--muted); display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+
 .ink { stroke: var(--ink); fill: none; stroke-width: 4; stroke-linecap: round; stroke-linejoin: round; }
-.inkfill { fill: var(--ink); } .white { fill: var(--paper); stroke: var(--ink); stroke-width: 4; }
-@media (max-width: 720px) {
-  .sheet { padding: 14px; } h1 { font-size: 28px; }
-  .canvas { grid-template-columns: 1fr; grid-template-areas: "hook" "need" "mid" "comp" "round"; }
+.inkfill { fill: var(--ink); }
+.white { fill: var(--paper); stroke: var(--ink); stroke-width: 4; stroke-linejoin: round; }
+
+@media (max-width: 760px) {
+  body { padding: 0; }
+  .sheet { padding: 16px; }
+  h1 { font-size: 28px; }
   .mid { grid-template-columns: 1fr; }
-  .mid .cell:first-child { padding-right: 16px; border-right: 0; border-bottom: 5px solid var(--ink); } .mid .cell:last-child { padding-left: 16px; }
-  .vision { position: static; transform: none; margin: 4px auto; }
-  .comp, .round { border-right: 0; } .fig { display: none; }
+  .vision-col { padding: 10px 0; border-top: var(--line) solid var(--ink); border-bottom: var(--line) solid var(--ink); }
+  .vision-col::before { display: none; }
+  .bottom { grid-template-columns: 1fr; }
+  .bottom .stack { border-right: 0; }
+  .fig { display: none; }
 }
 @media print {
   @page { size: A4 portrait; margin: 8mm; }
   * { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
-  body { background: #fff; padding: 0; font-size: 12px; } .sheet { padding: 0; max-width: none; }
+  body { background: #fff; padding: 0; font-size: 12.5px; }
+  .sheet { padding: 0; max-width: none; }
 }
 </style>
-
+</head>
+<body>
 <main class="sheet">
   <h1>NABC Pitch Canvas</h1>
+
   <div class="canvas">
-    <section class="cell hook">
+    <section class="row cell">
       <div class="lab"><span class="num">1</span>Hook<span class="chip">about 9 s</span></div>
-      <p>This summer Dresden sent a special vehicle through every street for 3 months. It cost about €380,000, and the result is a snapshot. The checks before were in 2015 and 2021.</p>
+      <p><b>Dresden just paid €380,000 for one photo of its roads, and it will be out of date after the first winter.</b> The checks before that were in 2015 and 2021.</p>
     </section>
 
-    <section class="cell need">
+    <section class="row cell">
       <div class="lab"><span class="num">2</span>Need<span class="chip">about 36 s</span></div>
-      <p>The road planners at the city look after about 1,490 km of road with little staff and money.</p>
-      <p>For 5 to 6 years at a time, they don't see new potholes until a citizen complains. The longer damage waits, the more the repair costs.</p>
+      <p>The city's road planners look after about 1,440 km of road with little staff and money.</p>
+      <p>For 5 to 6 years at a time, they don't see new potholes until a citizen complains or crashes. The longer damage waits, the more the repair costs, and the city is liable for potholes it didn't record.</p>
       <p><b>They need a current picture of the roads, every week.</b></p>
     </section>
 
-    <section class="mid">
+    <section class="row mid">
       <div class="cell">
         <div class="lab"><span class="num">3</span>Approach<span class="chip">about 90 s</span></div>
         <p>A camera kit on garbage trucks, which already drive every street.</p>
         <p>AI on the device spots potholes and blurs faces and number plates.</p>
-        <p>The planner gets a map with photos and a severity rank, sends one crew to a cluster of repairs, and the next weekly pass shows if the repair held.</p>
+        <p>The planner gets a weekly map with photos and a severity rank, sends one crew to a cluster of repairs, and the next pass shows if the repair held.</p>
+        <p>The city pays <b>€75 per km per year</b>, cameras included. The waste company is paid per truck.</p>
         <p>Start: 3 months, one district, a few trucks.</p>
       </div>
-      <div class="vision" aria-label="Vision">
-        <svg viewBox="0 0 200 150" aria-hidden="true"><polygon class="white" points="100,6 118,30 148,14 150,42 188,48 166,74 190,100 154,106 150,140 118,122 96,146 82,118 46,134 52,102 12,92 40,72 14,44 54,44 58,16 84,30"/></svg>
-        <div><small>Vision</small>Every road in Dresden checked every week</div>
+
+      <div class="vision-col" aria-label="Vision: every road in Dresden checked every week">
+        <div class="star">
+          <svg viewBox="0 0 150 140" aria-hidden="true"><polygon class="white" points="75,6 88,28 112,14 112,40 142,44 124,66 144,88 116,96 118,126 92,114 75,134 58,114 32,126 34,96 6,88 26,66 8,44 38,40 38,14 62,28"/></svg>
+          <div class="star-text"><small>Vision</small>Every road in Dresden checked every week</div>
+        </div>
       </div>
+
       <div class="cell">
         <div class="lab"><span class="num">4</span>Benefits<span class="chip">about 18 s</span></div>
-        <p>A road picture every week instead of every 5 to 6 years.</p>
-        <p>The city breaks even if it saves €104k per year through earlier, cheaper repairs. Safer roads on top.</p>
+        <p><b>About 300× more checks:</b> every street weekly instead of every 5 to 6 years.</p>
+        <p>No extra staff or vehicles, and <b>25% cheaper</b> than the market leader.</p>
+        <p>Pays for itself if earlier repairs save just <b>1%</b> of the €11.2m maintenance budget.</p>
+        <p>Safer roads, and proof that the city inspected.</p>
       </div>
     </section>
 
-    <section class="cell comp">
-      <div class="lab"><span class="num">5</span>Competition<span class="chip">about 18 s</span></div>
-      <p><b>vialytics</b> (Stuttgart) does the same with smartphones in 500+ cities. Dresden also has its own survey vehicle and free software.</p>
-      <p>Our edge, still to prove: faces and plates blurred on the device, severity ranking, a local team. Risks: detection accuracy and truck coverage.</p>
+    <section class="row bottom">
+      <div class="stack">
+        <div class="cell">
+          <div class="lab"><span class="num">5</span>Competition<span class="chip">about 18 s</span></div>
+          <p><b>vialytics</b> (600+ municipalities) uses smartphones that city staff must drive around, at about €100 per km. Survey vehicles give a snapshot every few years. Dresden's free software needs data: we feed it weekly.</p>
+          <p><b>Our edge:</b> every street, every week, no staff, 25% cheaper. <b>Risks:</b> detection accuracy, truck coverage, the waste company saying yes.</p>
+        </div>
+        <div class="cell">
+          <div class="lab"><span class="num">6</span>1 sentence rounding off<span class="chip">about 9 s</span></div>
+          <p>Three months, one district, a few trucks: let Dresden see its roads every week, before the next complaint, not after.</p>
+        </div>
+      </div>
+      <div class="fig" aria-hidden="true">
+        <svg viewBox="0 0 190 250">
+          <path class="white" d="M10 14h150l-6 36 22 18-48-8H10z"/>
+          <text x="48" y="40" class="inkfill" style="font-family:var(--marker);font-size:19px">NABC!</text>
+          <circle class="white" cx="108" cy="116" r="30"/>
+          <path class="inkfill" d="M80 108c4-24 38-28 56-10-14-4-34-6-56 10z"/>
+          <circle class="inkfill" cx="98" cy="116" r="3"/><circle class="inkfill" cx="119" cy="116" r="3"/>
+          <path class="ink" d="M97 130q11 9 24 0" style="stroke-width:3"/>
+          <rect class="white" x="82" y="150" width="52" height="84"/>
+          <path d="M84 162h48M84 172h48M84 182h48M84 192h48M84 202h48M84 212h48M84 222h48" style="stroke:var(--ink);stroke-width:2"/>
+          <path class="ink" d="M84 156l-30-12 4-22"/>
+          <path class="ink" d="M92 234v10M124 234v10"/>
+        </svg>
+      </div>
     </section>
-
-    <section class="cell round">
-      <div class="lab"><span class="num">6</span>1 sentence rounding off<span class="chip">about 9 s</span></div>
-      <p>Three months, one district, a few trucks: let Dresden see its roads every week, before the next complaint, not after.</p>
-    </section>
-
-    <div class="fig" aria-hidden="true">
-      <svg viewBox="0 0 190 250">
-        <path class="ink" d="M10 14h150l-6 36 22 18-48-8H10z" style="fill:var(--paper)"/>
-        <text x="50" y="36" class="inkfill" style="font-family:var(--marker);font-size:17px">NABC!</text>
-        <circle class="white" cx="108" cy="116" r="30"/>
-        <path class="inkfill" d="M80 108c4-24 38-28 56-10-14-4-34-6-56 10z"/>
-        <circle class="inkfill" cx="98" cy="116" r="3"/><circle class="inkfill" cx="119" cy="116" r="3"/>
-        <path class="ink" d="M97 130q11 9 24 0" style="stroke-width:3"/>
-        <rect class="white" x="82" y="150" width="52" height="84"/>
-        <path d="M84 162h48M84 172h48M84 182h48M84 192h48M84 202h48M84 212h48M84 222h48" style="stroke:var(--ink);stroke-width:2"/>
-        <path class="ink" d="M84 156l-30-12 4-22"/>
-        <path class="ink" d="M92 234v10M124 234v10"/>
-      </svg>
-    </div>
   </div>
-  <div class="foot"><span>Holperfrei · 13 Nov 2026 · times add up to a 3-minute pitch (5, 20, 50, 10, 10, 5 percent)</span><span>Canvas layout: dresden|exists, 2019</span></div>
-</main>
 
-</body></html>
+  <div class="usp"><span>Selling point:</span>Every street, every week, with no extra staff or vehicles, and 25% cheaper than the market leader.</div>
+
+  <div class="foot"><span>Holperfrei · 13 Nov 2026 · v3 · times add up to a 3-minute pitch (5, 20, 50, 10, 10, 5 percent)</span><span>Canvas layout: dresden|exists, 2019</span></div>
+</main>
+</body>
+</html>
