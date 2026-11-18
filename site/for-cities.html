@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Holperfrei for cities</title>
+  <meta name="description" content="Weekly road damage maps for city road departments, priced per kilometre of road.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/site.css">
+  <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="index.html" aria-label="Holperfrei home">
+        <svg viewBox="0 0 42 18" aria-hidden="true"><path d="M2 12c3-9 6-9 8 0s5 9 8 0 4-1 6-1h16" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg>
+        Holperfrei
+      </a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav">Menu</button>
+      <nav class="nav" id="nav">
+        <a href="how-it-works.html">How it works</a>
+        <a href="for-cities.html" aria-current="page">For cities</a>
+        <a href="about.html">About us</a>
+      </nav>
+      <a class="btn btn-truck btn-small" href="for-cities.html#pilot">Start a pilot</a>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="page-head street">
+      <div class="wrap">
+        <h1>Know every street. Every week.</h1>
+        <p class="lead">For road departments that keep hundreds of kilometres safe with few staff. No survey vehicle, no staff driving around, no hardware to buy.</p>
+      </div>
+    </section>
+
+    <section class="section office" aria-labelledby="why-title">
+      <div class="wrap">
+        <h2 id="why-title" style="margin-bottom:48px">What changes for your department</h2>
+        <div class="facts three">
+          <div><h3>Repair while it's cheap</h3><p>See cracks before winter turns them into potholes. Send one crew to a whole cluster.</p></div>
+          <div><h3>Proof you inspected</h3><p>A weekly, timestamped record for every street, for your Verkehrssicherungspflicht.</p></div>
+          <div><h3>Arguments for the council</h3><p>Ranked repair lists, before-and-after photos and reports, ready to present.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section office" style="padding-top:0" aria-labelledby="calc-title">
+      <div class="wrap price" style="align-items:start">
+        <div>
+          <h2 id="calc-title" style="margin-bottom:24px">Priced per kilometre of road</h2>
+          <p class="lead">One yearly subscription. Cameras, installation and the fleet partner are included.</p>
+          <p class="small">A one-time setup fee of about €2,500 covers installation, map import and staff training.</p>
+        </div>
+        <form class="calc" data-calc>
+          <div class="calc-row">
+            <div><label for="km">Your road network in km</label><input id="km" name="km" type="number" min="0" step="10" value="1440" inputmode="numeric"></div>
+            <fieldset>
+              <legend>Plan</legend>
+              <div class="tiers">
+                <label><input type="radio" name="tier" value="50"><span>Essentials<small>€50/km</small></span></label>
+                <label><input type="radio" name="tier" value="75" checked><span>Pro<small>€75/km</small></span></label>
+                <label><input type="radio" name="tier" value="100"><span>Enterprise<small>€100/km</small></span></label>
+              </div>
+            </fieldset>
+          </div>
+          <div class="calc-out" aria-live="polite">
+            <div class="total"><span>Per year</span><b data-out="year"></b></div>
+            <div><span>Per week</span><b data-out="week"></b></div>
+            <div><span>Road checks</span><b data-out="checks"></b></div>
+            <div><span>One survey at Dresden's 2026 rate</span><b data-out="survey"></b></div>
+          </div>
+          <p class="small includes"><b>Essentials:</b> damage map and monthly report. <b>Pro:</b> live map, ranked repair list, work orders, inspection log. <b>Enterprise:</b> Pro plus budget forecast, GIS and API access, bike paths.</p>
+        </form>
+      </div>
+    </section>
+
+    <section class="section street" aria-labelledby="vs-title">
+      <div class="wrap">
+        <h2 id="vs-title" style="margin-bottom:40px">How it compares</h2>
+        <div class="table-scroll">
+          <table class="vs" style="color:var(--marking)">
+            <thead><tr><th></th><th>Holperfrei</th><th>Smartphone in city cars</th><th>Survey vehicle</th></tr></thead>
+            <tbody>
+              <tr><th>How often</th><td class="us">Every street, every week</td><td>When staff drive, often twice a year</td><td>Once every few years</td></tr>
+              <tr><th>Extra effort</th><td class="us">None</td><td>City staff drive the routes</td><td>Contractor vehicle</td></tr>
+              <tr><th>Price</th><td class="us">€75 per km a year</td><td>About €100 per km a year</td><td>€50 to €208 per km, per survey</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="small" style="margin-top:20px">Dresden is building free, open-source road software. Holperfrei is meant to be its weekly data feed, not a competitor.</p>
+      </div>
+    </section>
+
+    <section class="section office" id="pilot" aria-labelledby="pilot-steps">
+      <div class="wrap">
+        <div class="section-head">
+          <h2 id="pilot-steps">Start with a pilot</h2>
+          <p class="lead">Three months, one district, a few trucks, paid by grants. Your department needs no budget and no tender to try it.</p>
+        </div>
+        <ol class="steps row">
+          <li><h3>We show you your roads</h3><p>We drive one district ourselves and bring you a map of your own potholes.</p></li>
+          <li><h3>Three months on the trucks</h3><p>A few trucks carry camera boxes. You get the weekly map and fix list.</p></li>
+          <li><h3>You decide</h3><p>Switch to a subscription, or stop. You keep the data either way.</p></li>
+        </ol>
+        <div class="actions"><a class="btn btn-truck" href="about.html#contact">Talk to us about a pilot</a></div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <a class="brand" href="index.html">
+        <svg viewBox="0 0 42 18" aria-hidden="true"><path d="M2 12c3-9 6-9 8 0s5 9 8 0 4-1 6-1h16" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg>
+        Holperfrei
+      </a>
+      <span>Computer science students from TU Dresden.</span>
+      <nav aria-label="Footer">
+        <a href="how-it-works.html">How it works</a>
+        <a href="for-cities.html">For cities</a>
+        <a href="about.html">About us</a>
+        <a href="credits.html">Image credits</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="js/site.js"></script>
+</body>
+</html>

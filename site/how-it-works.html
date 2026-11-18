@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>How Holperfrei works</title>
+  <meta name="description" content="A camera box on garbage trucks finds road damage and the city gets a weekly, ranked map.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/site.css">
+  <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="index.html" aria-label="Holperfrei home">
+        <svg viewBox="0 0 42 18" aria-hidden="true"><path d="M2 12c3-9 6-9 8 0s5 9 8 0 4-1 6-1h16" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg>
+        Holperfrei
+      </a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav">Menu</button>
+      <nav class="nav" id="nav">
+        <a href="how-it-works.html" aria-current="page">How it works</a>
+        <a href="for-cities.html">For cities</a>
+        <a href="about.html">About us</a>
+      </nav>
+      <a class="btn btn-truck btn-small" href="for-cities.html#pilot">Start a pilot</a>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="page-head street">
+      <div class="wrap">
+        <h1>From garbage route to repair list.</h1>
+        <p class="lead">The trucks drive every street anyway. We add a camera box, and the city gets a map of every crack and pothole each week.</p>
+      </div>
+    </section>
+
+    <section class="section office" aria-labelledby="box-title">
+      <div class="wrap how">
+        <figure class="truck-photo">
+          <div class="frame">
+            <img src="img/truck.jpg" alt="An orange garbage truck at the kerb">
+            <span class="bbox s-cam" style="left:77%;top:33%;width:11%;height:13%" aria-hidden="true"><em>Camera box</em></span>
+          </div>
+          <figcaption class="credit">Photo: JoachimKohler-HB, CC BY-SA 4.0.</figcaption>
+        </figure>
+        <div>
+          <h2 id="box-title" style="margin-bottom:28px">The camera box</h2>
+          <div class="facts">
+            <div><h3>Dashcam sized</h3><p>Mounted behind the windscreen. The driver does nothing.</p></div>
+            <div><h3>Runs on the truck</h3><p>Powered by the truck. We install and maintain it.</p></div>
+            <div><h3>Thinks on board</h3><p>The AI runs inside the box. Only photos of damage are uploaded.</p></div>
+            <div><h3>Private by design</h3><p>Faces and number plates are blurred before anything leaves the truck.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section street" aria-labelledby="demo-title">
+      <div class="wrap">
+        <div class="section-head">
+          <h2 id="demo-title">What the city sees every week</h2>
+          <p class="lead">One truck route through the Äußere Neustadt, worst damage first. Pick an entry to find it on the map.</p>
+        </div>
+        <div class="map-demo">
+          <div class="map-box"><svg class="route-map" data-demo-map role="img" aria-label="Map of the Äußere Neustadt with damage marked along one truck route"></svg></div>
+          <div class="map-side">
+            <div class="filters" role="group" aria-label="Show damage">
+              <button class="chip-btn" type="button" data-filter="1" aria-pressed="true">All</button>
+              <button class="chip-btn" type="button" data-filter="2" aria-pressed="false"><span class="sev sev-2"></span>Plan repair and up</button>
+              <button class="chip-btn" type="button" data-filter="3" aria-pressed="false"><span class="sev sev-3"></span>Fix now</button>
+            </div>
+            <ol class="dmg-list" data-dmg-list></ol>
+            <div class="dmg-detail" data-dmg-detail aria-live="polite"></div>
+          </div>
+        </div>
+        <p class="small" style="margin-top:16px">Sample data on real streets. Map data © OpenStreetMap contributors.</p>
+      </div>
+    </section>
+
+    <section class="section street" style="padding-top:0" aria-labelledby="types-title">
+      <div class="wrap">
+        <div class="section-head">
+          <h2 id="types-title">What it finds</h2>
+          <p class="lead">Each find gets a type, a box and an urgency rank, so crews know where to go first.</p>
+        </div>
+        <div class="gallery">
+          <figure><div class="frame"><img src="img/crack-long.jpg" alt="Long cracks in asphalt with weeds growing" loading="lazy"><span class="bbox s1" style="left:30%;top:12%;width:45%;height:80%"><em>Long crack 0.90</em></span></div>
+            <figcaption><b><span class="sev sev-1"></span>Long crack</b><span>Watch. Seal it on the next crew run.</span></figcaption></figure>
+          <figure><div class="frame"><img src="img/stage-1-crack.jpg" alt="A star-shaped crack in asphalt" loading="lazy"><span class="bbox s1" style="left:25%;top:21%;width:44%;height:56%"><em>Crack 0.91</em></span></div>
+            <figcaption><b><span class="sev sev-1"></span>Star crack</b><span>Watch. Cheap to seal while it's small.</span></figcaption></figure>
+          <figure><div class="frame"><img src="img/stage-2-network.jpg" alt="A network of cracks across a lane" loading="lazy"><span class="bbox s2" style="left:65%;top:32%;width:34%;height:59%"><em>Crack network 0.88</em></span></div>
+            <figcaption><b><span class="sev sev-2"></span>Crack network</b><span>Plan repair. Patch it before frost.</span></figcaption></figure>
+          <figure><div class="frame"><img src="img/crack-edge.jpg" alt="Asphalt breaking at the road edge" loading="lazy"><span class="bbox s2" style="left:3%;top:22%;width:94%;height:50%"><em>Edge break 0.86</em></span></div>
+            <figcaption><b><span class="sev sev-2"></span>Edge break</b><span>Plan repair. The edge is crumbling.</span></figcaption></figure>
+          <figure><div class="frame"><img src="img/pothole-lingner.jpg" alt="A pothole on Lingnerallee in Dresden" loading="lazy"><span class="bbox s3" style="left:28%;top:32%;width:32%;height:30%"><em>Pothole 0.95</em></span></div>
+            <figcaption><b><span class="sev sev-3"></span>Pothole, Lingnerallee</b><span>Fix now. A risk for bikes and cars.</span></figcaption></figure>
+          <figure><div class="frame"><img src="img/pothole-water.jpg" alt="A deep pothole filled with water" loading="lazy"><span class="bbox s3" style="left:2%;top:24%;width:96%;height:56%"><em>Pothole 0.98</em></span></div>
+            <figcaption><b><span class="sev sev-3"></span>Deep pothole</b><span>Fix now. Water hides how deep it is.</span></figcaption></figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="section office" aria-labelledby="fleet-title">
+      <div class="wrap split">
+        <figure>
+          <img class="tall" src="img/srd-cab.jpg" alt="Cab of an orange Stadtreinigung Dresden vehicle" loading="lazy">
+          <figcaption class="credit">Photo: ubahnverleih, CC BY 3.0.</figcaption>
+        </figure>
+        <div>
+          <h2 id="fleet-title" style="margin-bottom:24px">The waste company drives. We pay them for it.</h2>
+          <p class="lead">The fleet partner carries the camera and pays nothing. In return they get:</p>
+          <div class="facts" style="margin-top:32px">
+            <div><h3>€300 per truck a year</h3><p>For doing what they already do.</p></div>
+            <div><h3>A free dashcam</h3><p>Footage for accidents and insurance disputes.</p></div>
+            <div><h3>Bin and dumping alerts</h3><p>The same camera spots overflowing bins and illegal dumping.</p></div>
+            <div><h3>Zero effort</h3><p>We install, maintain and handle data protection.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <a class="brand" href="index.html">
+        <svg viewBox="0 0 42 18" aria-hidden="true"><path d="M2 12c3-9 6-9 8 0s5 9 8 0 4-1 6-1h16" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg>
+        Holperfrei
+      </a>
+      <span>Computer science students from TU Dresden.</span>
+      <nav aria-label="Footer">
+        <a href="how-it-works.html">How it works</a>
+        <a href="for-cities.html">For cities</a>
+        <a href="about.html">About us</a>
+        <a href="credits.html">Image credits</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="js/map-data.js"></script>
+  <script src="js/site.js"></script>
+</body>
+</html>
