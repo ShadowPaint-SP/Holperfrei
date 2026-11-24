@@ -48,26 +48,33 @@
 | Landkreis (Kreisstraßen) | 300 | km | Estimate | Example from press: a Landkreis with ~280 km Kreisstraßen |
 | State road authority contract (part of LASuV network) | 2,000 | km | Estimate | Saxony has ~4,500 km Staatsstraßen; first contract assumed for a part |
 
-## Cost per device (camera box on a garbage truck / bus)
+## Cost per truck (three cameras on a garbage truck / bus)
 
 | Input | Value | Unit | Real / Estimate | Source or reasoning |
 |---|---|---|---|---|
-| Hardware per device | 450 | € | Estimate | Raspberry Pi 5 (~€80) + AI HAT+ (€70–100, retail) + camera (~€40) + GPS/LTE modem (~€80) + rugged enclosure, mount, power (~€150) |
-| Installation per device | 150 | € | Estimate | Assumption: ~2h technician incl. travel |
+| Cameras per truck | 3 | count | Decision | Mounted low: front, left side, right side, to see the lane and both kerbs |
+| One complete box | 450 | € | Estimate | Raspberry Pi 5 (~€80) + AI HAT+ (€70–100, retail) + camera (~€40) + GPS/LTE modem (~€80) + rugged enclosure, mount, power (~€150) |
+| Extra camera with waterproof housing and cable | 100 | € | Estimate | Assumption: camera ~€40 + housing, mount, cable ~€60 |
+| Setup A hardware per truck (one box + 2 extra cameras) | 650 | € | Calculated | 450 + 2 × 100 |
+| Setup A installation per truck | 300 | € | Estimate | Assumption: ~4h technician, cabling under the chassis |
+| Setup B hardware per truck (three boxes) | 1,350 | € | Calculated | 3 × 450 |
+| Setup B installation per truck | 400 | € | Estimate | Assumption: three units, no long cables |
 | Device lifetime | 3 | years | Estimate | Assumption (vibration, weather) |
 | Road km covered per device | 50 | km | Real | Assumption: garbage trucks drive every residential street at least bi-weekly; 1 device per 50 km network |
 | Payment to fleet partner per vehicle | 300 | €/yr | Estimate | Assumption: compensation for power + mounting (waste company / DVB) |
-| Mobile data per device | 5 | €/month | Estimate | IoT SIM plan; edge AI uploads only damage frames, not video |
+| Mobile data per SIM | 5 | €/month | Estimate | IoT SIM plan; edge AI uploads only damage frames, not video. Setup A: 1 SIM per truck, Setup B: 3 |
 | Cloud storage + AI inference | 8 | €/km/yr | Estimate | Assumption |
 | Customer support & data QA | 5 | €/km/yr | Estimate | Assumption |
-| → Variable cost per km per year | 24.20 | €/km/yr | Calculated | Formula: hardware depreciation + partner + data + cloud + support |
+| → Variable cost per km per year, Setup A | 26.53 | €/km/yr | Calculated | Formula: hardware depreciation + partner + data + cloud + support |
+| → Variable cost per km per year, Setup B | 34.27 | €/km/yr | Calculated | Same formula |
 
 ## Team & overhead
 
 | Input | Value | Unit | Real / Estimate | Source or reasoning |
 |---|---|---|---|---|
 | Fully loaded cost per employee (from year 2) | 70,000 | €/yr | Estimate | Assumption: ~€58k gross dev salary + ~20% employer social contributions |
-| EXIST stipend per founder (graduate) | 2,500 | €/month | Real | ptj.de: €2,500/month for graduates, 12 months |
+| EXIST stipend per founder (graduate) | 2,500 | €/month | Real | ptj.de: €2,500/month for graduates, 12 months, for at most 3 people |
+| Unpaid team members in year 1 | 4 | people | Estimate | Assumption: the 4 people EXIST doesn't cover work unpaid in 2027 |
 | Share of team working in sales | 25% | % | Estimate | Assumption – counted in CAC |
 | EXIST material + coaching budget (team) | 35,000 | € | Real | ptj.de: up to €30,000 material for teams + €5,000 coaching |
 
@@ -82,7 +89,7 @@
 | Pilot km (grant-funded) | 300 | 0 | 0 | 0 | 0 |
 | Paid pilot (€) | 40,000 | 0 | 0 | 0 | 0 |
 | Data licensing (€) | 0 | 0 | 25,000 | 80,000 | 200,000 |
-| Team (people) | 3 | 5 | 8 | 12 | 17 |
+| Team (people) | 7 | 7 | 7 | 12 | 12 |
 | Sales & marketing (€) | 10,000 | 40,000 | 100,000 | 180,000 | 280,000 |
 | Admin, legal, GDPR (€) | 15,000 | 40,000 | 70,000 | 110,000 | 150,000 |
 | R&D (€) | 20,000 | 30,000 | 50,000 | 70,000 | 90,000 |
@@ -94,5 +101,6 @@ If the professor pushes back, these move the result most:
 
 - **Customer growth**: how many cities sign each year.
 - **Price per km**: €75 now; every €10 changes 2031 revenue by about €400k.
-- **Km per camera**: 50 km assumed; fewer km per camera means more hardware.
+- **Camera setup**: Setup A (one computer, three cameras) or Setup B (three boxes). B costs about €8 more per km and pushes break-even from 2030 to 2031.
+- **Km per truck**: 50 km assumed; fewer km per truck means more hardware.
 - **Team size**: the largest cost by far.

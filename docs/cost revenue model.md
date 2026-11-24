@@ -44,7 +44,7 @@ We put small AI cameras on garbage trucks that already drive every street. Every
 4. **Data licensing**, from year 3. We sell the same data again to insurers, navigation apps and construction companies. It needs no extra cameras.
 
 **Why €75 per km?**
-- **The floor is our own cost** of about €24/km. €75 is roughly three times that, which leaves room for salaries and growth.
+- **The floor is our own cost** of about €27/km with Setup A (€34/km with Setup B). €75 is two to three times that, which leaves room for salaries and growth.
 - **Cities already pay this kind of price.** vialytics, the market leader, charges about €100/km/yr. A classic survey vehicle costs €50–80/km for one snapshot. Dresden paid about €208/km for its 2026 survey.
 - **The pitch line:** we are **25% cheaper than the market leader** and update weekly instead of once or twice a year.
 
@@ -54,25 +54,31 @@ We put small AI cameras on garbage trucks that already drive every street. Every
 
 ## 2. What it costs us (cost model)
 
-**Variable cost per km per year: €24.20**
+Each truck carries **three cameras mounted low**: one at the front and one on each side, so together they see the lane and both kerbs. One truck covers about 50 km, because it drives the same streets every week.
 
-One camera box covers about 50 km, because a garbage truck drives the same streets every week.
+We haven't decided how to build it yet, so we calculate two setups:
 
-| Item | Calculation | €/km/yr |
+- **Setup A: one computer, three cameras.** One box (Raspberry Pi 5, AI HAT+, GPS/LTE modem) with three cameras cabled to it. About **€650** hardware + **€300** installation, because the side cameras need cabling under the chassis.
+- **Setup B: three separate boxes.** Three complete boxes at €450 each, each with its own SIM. About **€1,350** hardware + **€400** installation.
+
+**Variable cost per km per year**
+
+| Item | Setup A | Setup B |
 |---|---|---|
-| Camera box + installation | (€450 + €150) ÷ 3 years ÷ 50 km | 4.00 |
-| Fee to garbage-truck company | €300 per truck ÷ 50 km | 6.00 |
-| Mobile data (IoT SIM) | €5/month × 12 ÷ 50 km | 1.20 |
-| Cloud + AI inference | estimate | 8.00 |
-| Support & data checks | estimate | 5.00 |
-| **Total** | | **24.20** |
+| Hardware + installation ÷ 3 years ÷ 50 km | 6.33 | 11.67 |
+| Fee to garbage-truck company (€300 per truck ÷ 50 km) | 6.00 | 6.00 |
+| Mobile data (€5/month per SIM) | 1.20 | 3.60 |
+| Cloud + AI inference (estimate) | 8.00 | 8.00 |
+| Support & data checks (estimate) | 5.00 | 5.00 |
+| **Total** | **26.53** | **34.27** |
+| **Gross margin at €75/km** | **65%** | **54%** |
 
-That leaves **€75 − €24.20 = €50.80 per km**, a **68% gross margin**.
+The plan below uses **Setup A**. Setup B's results are listed under the table.
 
-The camera box is a Raspberry Pi 5 (~€80), an AI HAT+ (~€70–100), a camera (~€40), a GPS/LTE modem (~€80), and a rugged case, mount and power supply (~€150).
+One complete box is a Raspberry Pi 5 (~€80), an AI HAT+ (~€70–100), a camera (~€40), a GPS/LTE modem (~€80), and a rugged case, mount and power supply (~€150). Each extra camera in Setup A adds ~€100 for the camera, a waterproof housing and cable.
 
 **Fixed costs**
-- **Team:** in year 1, three founders on the EXIST stipend (€2,500/month each). From year 2 we count about €70k per employee (salary plus employer costs). The team grows from 5 to 17 people.
+- **Team:** 7 people from the start, 12 from 2030. In year 1, three founders are paid by the EXIST stipend (€2,500/month each; EXIST pays at most three people). The other four are unpaid in year 1. From year 2 we count about €70k per person (salary plus employer costs). Software and AI are built once, so the team doesn't need to grow with every new city.
 - **Sales & marketing:** tenders, trade fairs, travel.
 - **Admin, legal, insurance, GDPR:** cameras in public space need a solid data protection concept.
 - **R&D:** model training, image labelling, test hardware.
@@ -89,32 +95,41 @@ The camera box is a Raspberry Pi 5 (~€80), an AI HAT+ (~€70–100), a camera
 | State road authority | – | – | – | – | 1 |
 | **Paying customers** | pilot | **7** | **28** | **62** | **108** |
 | Road km monitored | 300 | 2,750 | 10,100 | 22,650 | 40,900 |
-| Camera boxes on trucks | 6 | 55 | 202 | 453 | 818 |
+| Trucks with cameras | 6 | 55 | 202 | 453 | 818 |
 | Subscriptions | – | 206k | 758k | 1.70m | 3.01m |
 | Setup fees | – | 18k | 53k | 85k | 115k |
 | Pilot | 40k | – | – | – | – |
 | Data licensing | – | – | 25k | 80k | 200k |
 | **Revenue** | **40k** | **224k** | **835k** | **1.86m** | **3.32m** |
-| Variable costs | 7k | 67k | 244k | 548k | 990k |
-| **Gross profit** | 33k | 157k | 591k | 1.32m | 2.33m |
-| Team (people) | 3 | 5 | 8 | 12 | 17 |
-| Personnel | 90k | 350k | 560k | 840k | 1.19m |
+| Variable costs | 8k | 73k | 268k | 601k | 1.09m |
+| **Gross profit** | 32k | 151k | 568k | 1.26m | 2.24m |
+| Team (people) | 7 | 7 | 7 | 12 | 12 |
+| Personnel | 90k | 490k | 490k | 840k | 840k |
 | Sales & marketing | 10k | 40k | 100k | 180k | 280k |
 | Admin, legal, GDPR | 15k | 40k | 70k | 110k | 150k |
 | R&D | 20k | 30k | 50k | 70k | 90k |
-| **Fixed costs** | **135k** | **460k** | **780k** | **1.20m** | **1.71m** |
-| **Operating result (EBITDA)** | **−102k** | **−303k** | **−189k** | **+116k** | **+623k** |
+| **Fixed costs** | **135k** | **600k** | **710k** | **1.20m** | **1.36m** |
+| **Operating result (EBITDA)** | **−103k** | **−449k** | **−142k** | **+64k** | **+880k** |
 | Funding | EXIST 125k | Seed 750k | | | |
-| Cash at year end | 23k | 470k | 281k | 396k | 1.02m |
+| Cash at year end | 22k | 323k | 181k | 245k | 1.13m |
 
-- **Break-even comes in 2030**, at about 60 customers.
+- **Break-even comes in 2030**, at about 60 customers, just after we grow to 12 people.
 - From 2028, over 90% of revenue is recurring.
-- Cash never goes below zero, so the EXIST grant and a €750k seed round are enough.
+- We lose about €690k before we break even. Cash never goes below zero, so the EXIST grant and a €750k seed round are enough.
+
+**With Setup B (three separate boxes):**
+
+| | 2027 | 2028 | 2029 | 2030 | 2031 |
+|---|---|---|---|---|---|
+| Operating result (EBITDA) | −105k | −470k | −220k | −111k | +563k |
+| Cash at year end (€750k seed) | 20k | 299k | 79k | **−32k** | 532k |
+
+With Setup B, break-even moves to 2031 and we lose about €910k first. A €750k seed round would not be enough: we would need about €1m.
 
 **SaaS health check**
-- **CAC** (cost to win one customer, including sales staff): about €11–18k.
-- **LTV** (profit from one customer over 5 years): about €95–100k.
-- **LTV ÷ CAC** is about **6–8×**. Above 3× counts as healthy.
+- **CAC** (cost to win one customer, including sales staff): about €11–23k (highest in 2028, when 7 people win only the first 7 customers).
+- **LTV** (profit from one customer over 5 years): about €91–95k with Setup A, €76–80k with Setup B.
+- **LTV ÷ CAC** is about **4–9×** with Setup A and **3–7×** with Setup B. Above 3× counts as healthy.
 
 ## 4. How the city makes money (it saves it)
 
@@ -142,7 +157,7 @@ The city doesn't earn money from us. It **spends less**:
 They are a **partner, not a customer**:
 
 - **€300 per truck per year** for doing nothing.
-- **Zero effort.** The box is the size of a dashcam, runs on the truck's power, and we install and maintain it.
+- **Zero effort.** Three small cameras mounted low, running on the truck's power, and we install and maintain it.
 - **A free dashcam** for accidents and insurance disputes.
 - **Bonus detection** of overflowing bins and illegal dumping, using the same camera with a different AI model.
 - **Less wear on their own trucks** once bad roads are fixed.

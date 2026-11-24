@@ -1,0 +1,401 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Holperfrei Pitch</title>
+  <meta name="description" content="Holperfrei pitch deck. Cameras on garbage trucks check every street every week.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/site.css">
+  <link rel="stylesheet" href="css/pitch.css">
+  <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+</head>
+<body class="deck-body">
+  <main class="deck" data-deck>
+
+    <!-- 1. Cover -->
+    <section class="slide street cover" data-title="Cover" aria-label="Cover">
+      <figure class="cover-photo">
+        <img src="img/stage-3-pothole.jpg" alt="A pothole on Reichenbachstraße in Dresden">
+        <span class="bbox s3" style="left:12%;top:41%;width:73%;height:32%" aria-hidden="true"><em>Pothole 0.96 · Fix now</em></span>
+      </figure>
+      <div class="cover-copy">
+        <p class="brand-line">
+          <svg viewBox="0 0 42 18" aria-hidden="true"><path d="M2 12c3-9 6-9 8 0s5 9 8 0 4-1 6-1h16" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg>
+          Holperfrei
+        </p>
+        <h1>We find potholes before you do.</h1>
+        <p class="kicker">Computer science students, TU Dresden · November 2026</p>
+      </div>
+      <aside class="notes">Open with the coffee: you're on the bus with your morning coffee, the bus hits a pothole, and the coffee is on your shirt. That happens because the city finds road damage too late.</aside>
+    </section>
+
+    <!-- 2. Hook -->
+    <section class="slide office" data-title="The problem" aria-label="The problem">
+      <div class="slide-head">
+        <p class="eyebrow">The problem</p>
+        <h2>Dresden paid €380,000 for one picture of its roads.</h2>
+        <p class="lead">The 2026 survey is out of date after the first winter. The ones before it were in 2015 and 2021. In between, the city hears about a pothole when someone complains or crashes.</p>
+      </div>
+      <div class="weeks">
+        <figure>
+          <figcaption><b>Today</b><span>One survey every five to six years</span></figcaption>
+          <div class="week-grid" data-weeks="survey" aria-hidden="true"></div>
+        </figure>
+        <figure>
+          <figcaption><b>With Holperfrei</b><span>Every street, every week</span></figcaption>
+          <div class="week-grid all" data-weeks="all" aria-hidden="true"></div>
+        </figure>
+        <p class="small">Six years of road checks, one square per week. About 300 times more checks.</p>
+      </div>
+      <aside class="notes">One square is one week. Red is the only week the city actually sees all its roads. Everything grey is blind.</aside>
+    </section>
+
+    <!-- 3. Early prevention -->
+    <section class="slide street" data-title="Why early matters" aria-label="Why early matters">
+      <div class="stages-slide" data-stages>
+        <div class="stage-left">
+          <figure class="stage-photo">
+            <img src="img/stage-1-crack.jpg" alt="A star-shaped hairline crack in asphalt" class="on">
+            <img src="img/stage-2-network.jpg" alt="A network of cracks spreading across a road lane">
+            <img src="img/stage-3-pothole.jpg" alt="A pothole on Reichenbachstraße in Dresden">
+            <img src="img/stage-4-broken.jpg" alt="A street full of potholes and patches">
+            <div class="boxes on"><span class="bbox s1" style="left:25%;top:21%;width:44%;height:56%"><em>Crack 0.91</em></span></div>
+            <div class="boxes"><span class="bbox s2" style="left:65%;top:32%;width:34%;height:59%"><em>Crack network 0.88</em></span></div>
+            <div class="boxes"><span class="bbox s3" style="left:26%;top:41%;width:46%;height:32%"><em>Pothole 0.96</em></span></div>
+            <div class="boxes"><span class="bbox s3" style="left:11%;top:54%;width:20%;height:44%"><em>Pothole 0.97</em></span><span class="bbox s3" style="left:24%;top:9%;width:14%;height:35%"><em>Pothole 0.93</em></span><span class="bbox s3" style="left:58%;top:58%;width:10%;height:14%"><em>Pothole 0.89</em></span></div>
+          </figure>
+          <div class="stage-info" aria-live="polite">
+            <div data-stage-text>
+              <h3>Hairline crack</h3>
+              <p>A crew seals it with hot bitumen in a few minutes. No closed lane, no detour.</p>
+              <div class="who"><b>Holperfrei sees it</b>on the next weekly pass.</div>
+            </div>
+            <div data-stage-text hidden>
+              <h3>Crack network</h3>
+              <p>Water is getting in. A surface patch now stops frost from breaking it open next winter.</p>
+              <div class="who"><b>Holperfrei sees it</b>and ranks it before winter.</div>
+            </div>
+            <div data-stage-text hidden>
+              <h3>Pothole</h3>
+              <p>The asphalt has broken out. Cut the edges and refill, up to €200 per hole. The city is now liable.</p>
+              <div class="who"><b>Today the city sees it</b>when someone complains or crashes.</div>
+            </div>
+            <div data-stage-text hidden>
+              <h3>Broken road</h3>
+              <p>Patches on patches. The whole stretch is milled and resurfaced, with the street closed for days.</p>
+              <div class="who"><b>Today the city sees it</b>in the next survey, years later.</div>
+            </div>
+          </div>
+        </div>
+        <div class="stage-right">
+          <p class="eyebrow">Why early matters</p>
+          <h2>A crack is cheap to fix. A pothole isn't.</h2>
+          <p class="lead">Water gets into a crack, freezes, and breaks the asphalt apart. Damage grows slowly, then all at once.</p>
+          <div class="curve">
+            <svg viewBox="0 0 1000 230" role="img" aria-label="Road condition over time. It drops slowly at first, then quickly.">
+              <rect class="zone-early" x="40" y="10" width="440" height="190"/>
+              <rect class="zone-late" x="520" y="10" width="440" height="190"/>
+              <text class="zone-label" x="56" y="40">Holperfrei finds it here</text>
+              <text class="zone-label" x="536" y="40">Today the city finds it here</text>
+              <line class="axis" x1="40" y1="200" x2="960" y2="200"/>
+              <path class="line" d="M40 64 C 300 70, 500 92, 620 124 S 860 188, 960 196"/>
+              <circle data-curve-dot r="11" fill="var(--truck)" stroke="var(--asphalt)" stroke-width="4" cx="150" cy="66"/>
+              <text x="40" y="224">Time</text>
+              <text x="960" y="224" text-anchor="end">Road condition</text>
+            </svg>
+            <div class="stage-picker" role="group" aria-label="Damage stage">
+              <button type="button" data-stage aria-pressed="true">Hairline crack<small>Seal it</small></button>
+              <button type="button" data-stage aria-pressed="false">Crack network<small>Patch it</small></button>
+              <button type="button" data-stage aria-pressed="false">Pothole<small>Cut and refill</small></button>
+              <button type="button" data-stage aria-pressed="false">Broken road<small>Rebuild it</small></button>
+            </div>
+          </div>
+          <div class="effort"><span>Repair effort</span><div class="effort-bar"><i></i></div></div>
+        </div>
+      </div>
+      <aside class="notes">Click through the four stages. The point: the cheap repair window is long, but today the city only looks after it closes. Studies show preventive repair cuts maintenance spending by 10 to 30 percent.</aside>
+    </section>
+
+    <!-- 4. The idea -->
+    <section class="slide office" data-title="Our idea" aria-label="Our idea">
+      <div class="idea">
+        <div>
+          <p class="eyebrow">Our idea</p>
+          <h2>Garbage trucks already drive every street, every week.</h2>
+          <ol class="steps">
+            <li><h3>We add three small cameras</h3><p>Low on the truck: one at the front, one on each side. Together they see the lane and both kerbs. The driver does nothing.</p></li>
+            <li><h3>AI spots the damage</h3><p>On board. Faces and number plates are blurred before anything leaves the truck.</p></li>
+            <li><h3>The city gets a weekly map</h3><p>Every crack and pothole, ranked by urgency.</p></li>
+          </ol>
+        </div>
+        <figure class="truck-photo">
+          <div class="frame">
+            <img src="img/truck.jpg" alt="An orange garbage truck at the kerb">
+            <span class="bbox s-cam cam-pulse" style="left:62.5%;top:80.5%;width:5.5%;height:5%" aria-hidden="true"><em>Side camera</em></span>
+            <span class="bbox s-cam cam-pulse" style="left:78%;top:78.5%;width:6.5%;height:5.5%" aria-hidden="true"><em>Front camera</em></span>
+          </div>
+          <svg class="top-view" viewBox="0 0 736 200" role="img" aria-label="Top view of a street. The truck's front camera looks ahead, the two side cameras look at both kerbs.">
+            <rect class="road" x="0" y="20" width="736" height="160"/>
+            <line class="kerb" x1="0" y1="20" x2="736" y2="20"/>
+            <line class="kerb" x1="0" y1="180" x2="736" y2="180"/>
+            <path class="cone" d="M478 100 L640 34 L640 166 Z"/>
+            <path class="cone" d="M300 78 L250 22 L470 22 L430 78 Z"/>
+            <path class="cone" d="M300 122 L250 178 L470 178 L430 122 Z"/>
+            <rect class="truck-top" x="250" y="78" width="228" height="44" rx="5"/>
+            <rect class="cab-top" x="436" y="82" width="38" height="36" rx="3"/>
+            <circle class="cam-dot" cx="478" cy="100" r="7"/>
+            <circle class="cam-dot" cx="365" cy="78" r="7"/>
+            <circle class="cam-dot" cx="365" cy="122" r="7"/>
+            <text x="652" y="96">Front:</text><text x="652" y="118">road ahead</text>
+            <text x="16" y="56">Left side: kerb, gutter</text>
+            <text x="16" y="158">Right side: kerb, edge</text>
+          </svg>
+          <figcaption class="credit">Three cameras, one lane and both kerbs on every pass. Photo: JoachimKohler-HB, CC BY-SA 4.0.</figcaption>
+        </figure>
+      </div>
+      <aside class="notes">Keep this short. Don't explain model training. Three cameras sit low, close to the asphalt, so they see cracks a windscreen camera would miss. Truck drives, cameras see, city gets a map.</aside>
+    </section>
+
+    <!-- 5. The weekly map -->
+    <section class="slide street" data-title="What the city gets" aria-label="What the city gets">
+      <div class="report">
+        <div class="hero-map report-map">
+          <svg class="route-map" data-hero-map role="img" aria-label="Map of Dresden Äußere Neustadt. A garbage truck drives its route and road damage is marked where it passes."></svg>
+          <aside class="fix-list">
+            <header><strong>Fix list, Neustadt</strong><span>Sample data</span></header>
+            <ol data-fix-list></ol>
+            <footer><span><span data-km>0.0</span> km of 4 km driven</span><button class="replay" type="button" data-replay>Drive again</button></footer>
+          </aside>
+        </div>
+        <div class="report-side">
+          <p class="eyebrow">What the city gets</p>
+          <h2>A ranked fix list, every Monday.</h2>
+          <article class="entry" aria-label="Sample entry from the fix list">
+            <div class="entry-photo">
+              <img src="img/pothole-lingner.jpg" alt="A pothole on Lingnerallee in Dresden">
+              <span class="bbox s3" style="left:28%;top:32%;width:32%;height:30%" aria-hidden="true"><em>Pothole 0.95</em></span>
+            </div>
+            <dl>
+              <div><dt>Damage</dt><dd>Pothole</dd></div>
+              <div><dt>Where</dt><dd>Lingnerallee, right lane</dd></div>
+              <div><dt>Urgency</dt><dd><span class="sev sev-3"></span>Fix now</dd></div>
+              <div><dt>First seen</dt><dd>3 weeks ago, as a crack</dd></div>
+              <div><dt>Since last week</dt><dd>Grown, now a hole</dd></div>
+            </dl>
+            <p class="small">Sample entry. Every find has a photo, a location, an urgency rank and its history.</p>
+          </article>
+        </div>
+      </div>
+      <aside class="notes">This is the product. One truck, one route, four kilometres. Each find lands in a ranked list with photo and history, so a planner can send one crew to a whole cluster, and the next pass shows whether the repair held.</aside>
+    </section>
+
+    <!-- 6. What it finds -->
+    <section class="slide street" data-title="What it finds" aria-label="What it finds">
+      <div class="slide-head row-head">
+        <div>
+          <p class="eyebrow">What it finds</p>
+          <h2>Cracks, edges and potholes, ranked by urgency.</h2>
+        </div>
+        <ul class="legend">
+          <li><span class="sev sev-1"></span>Watch</li>
+          <li><span class="sev sev-2"></span>Plan repair</li>
+          <li><span class="sev sev-3"></span>Fix now</li>
+        </ul>
+      </div>
+      <div class="finds">
+        <figure><div class="frame"><img src="img/crack-long.jpg" alt="Long cracks in asphalt"><span class="bbox s1" style="left:30%;top:12%;width:45%;height:80%"><em>Long crack 0.90</em></span></div>
+          <figcaption><b><span class="sev sev-1"></span>Long crack</b>Seal on the next crew run.</figcaption></figure>
+        <figure><div class="frame"><img src="img/stage-2-network.jpg" alt="A network of cracks across a lane"><span class="bbox s2" style="left:65%;top:32%;width:34%;height:59%"><em>Crack network 0.88</em></span></div>
+          <figcaption><b><span class="sev sev-2"></span>Crack network</b>Patch it before frost.</figcaption></figure>
+        <figure><div class="frame"><img src="img/crack-edge.jpg" alt="Asphalt breaking at the road edge"><span class="bbox s2" style="left:3%;top:22%;width:94%;height:50%"><em>Edge break 0.86</em></span></div>
+          <figcaption><b><span class="sev sev-2"></span>Edge break</b>The edge is crumbling.</figcaption></figure>
+        <figure><div class="frame"><img src="img/pothole-water.jpg" alt="A deep pothole filled with water"><span class="bbox s3" style="left:2%;top:24%;width:96%;height:56%"><em>Pothole 0.98</em></span></div>
+          <figcaption><b><span class="sev sev-3"></span>Deep pothole</b>Water hides how deep it is.</figcaption></figure>
+      </div>
+      <p class="small">Boxes are illustrations of how the model reports damage. Photos: Wikimedia Commons, see credits.</p>
+      <aside class="notes">The number on each box is how sure the model is. Ranking means the crew starts with the red ones.</aside>
+    </section>
+
+    <!-- 7. Benefits -->
+    <section class="slide office" data-title="What the city saves" aria-label="What the city saves">
+      <div class="benefit">
+        <div>
+          <p class="eyebrow">What the city saves</p>
+          <h2>Cheaper than one survey. Saves five times its price.</h2>
+          <ul class="gains">
+            <li><b>300× more checks</b>Every street weekly instead of every 5 to 6 years.</li>
+            <li><b>No extra staff</b>No inspectors driving around, no survey vehicle.</li>
+            <li><b>Proof of inspection</b>A timestamped weekly record for the city's legal duty to keep roads safe.</li>
+          </ul>
+        </div>
+        <div class="money-bars" aria-label="Dresden, per year">
+          <p class="mb-title">Dresden, all 1,440 km</p>
+          <div class="compare">
+            <div class="row">
+              <div class="row-head"><span>One road survey, 2026. Outdated after one winter.</span><b>€380,000</b></div>
+              <div class="bar"><i style="--w:67.9%"></i></div>
+            </div>
+            <div class="row">
+              <div class="row-head"><span>Holperfrei, every week for a year</span><b>€108,000</b></div>
+              <div class="bar ours"><i style="--w:19.3%"></i></div>
+            </div>
+            <div class="row">
+              <div class="row-head"><span>Saved a year by repairing earlier</span><b>€560,000</b></div>
+              <div class="bar save"><i style="--w:100%"></i></div>
+            </div>
+          </div>
+          <p class="small">How we get €560,000: Dresden spends €11.2m a year on road maintenance. Studies show early repair saves 10 to 30%. We take the low end, 10%, and claim only half of it.</p>
+        </div>
+      </div>
+      <aside class="notes">Read only the three amounts. The survey costs more than three years of Holperfrei and is outdated after one winter. If asked about the €560k: 10% of the budget, half credited to us, so it's conservative.</aside>
+    </section>
+
+    <!-- 8. Business model -->
+    <section class="slide street" data-title="Business model" aria-label="Business model">
+      <div class="slide-head">
+        <p class="eyebrow">Business model</p>
+        <h2>One yearly subscription per kilometre of road.</h2>
+      </div>
+      <div class="flow" aria-label="Who pays whom">
+        <div class="party">
+          <span class="role">Customer</span>
+          <b>City road department</b>
+          <p>Gets the weekly map, the fix list and proof it inspected.</p>
+        </div>
+        <div class="link">
+          <span class="money">€75 per km a year</span>
+          <svg viewBox="0 0 200 60" aria-hidden="true"><path d="M4 20h180m-14-12 14 12-14 12" /><path class="back" d="M196 46H16m14-12-14 12 14 12" /></svg>
+          <span class="goods">Weekly damage map</span>
+        </div>
+        <div class="party us">
+          <span class="role">Us</span>
+          <b>Holperfrei</b>
+          <p>Builds, installs and maintains the boxes. Runs the AI and the map.</p>
+        </div>
+        <div class="link">
+          <span class="money">€300 per truck a year</span>
+          <svg viewBox="0 0 200 60" aria-hidden="true"><path d="M4 20h180m-14-12 14 12-14 12" /><path class="back" d="M196 46H16m14-12-14 12 14 12" /></svg>
+          <span class="goods">Drives its usual route</span>
+        </div>
+        <div class="party">
+          <span class="role">Partner</span>
+          <b>Waste company</b>
+          <p>Also gets a free dashcam and alerts for overflowing bins.</p>
+        </div>
+      </div>
+      <div class="dresden">
+        <div><span>Dresden</span><b>1,440 km × €75 = €108,000 a year</b></div>
+        <div><span>Cameras</span><b>Included. The city buys no hardware.</b></div>
+        <div><span>Our cost</span><b>About €27 per km, so 65% gross margin</b></div>
+      </div>
+      <aside class="notes">Say the word subscription. The city pays per km, like it budgets. The truck company is a partner we pay, not a customer.</aside>
+    </section>
+
+    <!-- 9. Competition -->
+    <section class="slide office" data-title="Competition" aria-label="Competition">
+      <div class="slide-head">
+        <p class="eyebrow">Competition</p>
+        <h2>Every street, every week, 25% cheaper.</h2>
+      </div>
+      <table class="vs deck-vs">
+        <thead><tr><th></th><th>How often</th><th>Who has to drive</th><th>Price</th></tr></thead>
+        <tbody>
+          <tr class="us-row"><th>Holperfrei</th><td>Every street, every week</td><td>Nobody new. The trucks drive anyway.</td><td>€75 per km a year</td></tr>
+          <tr><th>vialytics<small>600+ towns, smartphone in city cars</small></th><td>When staff drive, often twice a year</td><td>City staff</td><td>About €100 per km a year</td></tr>
+          <tr><th>Survey vehicle<small>Laser and camera van</small></th><td>Once every few years</td><td>A contractor</td><td>€50 to €208 per km, per survey</td></tr>
+          <tr><th>Cyface<small>Citizen app, TU Dresden spin-off</small></th><td>Only where volunteers ride</td><td>Volunteers</td><td>Not public</td></tr>
+        </tbody>
+      </table>
+      <p class="small">Dresden is building free, open-source road software. We want to be its weekly data feed, not its competitor.</p>
+      <aside class="notes">vialytics is the market leader. Their weak spot: someone has to drive. Ours drives anyway.</aside>
+    </section>
+
+    <!-- 10. Proving it -->
+    <section class="slide street" data-title="The pilot" aria-label="The pilot">
+      <div class="pilot">
+        <div>
+          <p class="eyebrow">The pilot</p>
+          <h2>Three months, one district, a few trucks.</h2>
+          <p class="lead">Paid by grants, so the city needs no budget and no tender to try it.</p>
+          <ol class="pilot-steps">
+            <li><b>Show first</b>We drive one district ourselves and bring the city a map of its own potholes.</li>
+            <li><b>Three months on the trucks</b>About 300 km. The city gets the weekly map and fix list.</li>
+            <li><b>The city decides</b>Switch to a subscription, or stop.</li>
+          </ol>
+        </div>
+        <div class="measure">
+          <h3>What the pilot has to prove</h3>
+          <table>
+            <thead><tr><th>Question</th><th>How we measure it</th></tr></thead>
+            <tbody>
+              <tr><td>Does the AI find the damage?</td><td>Inspectors check the same streets by hand. We count hits, misses and false alarms.</td></tr>
+              <tr><td>Do the trucks cover the roads?</td><td>Share of the district's streets passed each week, from the GPS trace.</td></tr>
+              <tr><td>Does the city save time?</td><td>Inspection hours before and during the pilot.</td></tr>
+              <tr><td>Does it repair earlier?</td><td>Days from first sighting to repair.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <aside class="notes">This answers "how accurate is it". We don't claim a number yet. The pilot measures it against inspectors on the same streets.</aside>
+    </section>
+
+    <!-- 11. Plan -->
+    <section class="slide office" data-title="The plan" aria-label="The plan">
+      <div class="plan">
+        <div>
+          <p class="eyebrow">The plan</p>
+          <h2>Dresden first. Then Saxony.</h2>
+          <ul class="milestones">
+            <li><b>2027</b>Pilot in one Dresden district. EXIST grant.</li>
+            <li><b>2028</b>First paying cities and towns. €750k seed round.</li>
+            <li><b>2030</b>Break-even at about 60 customers.</li>
+            <li><b>2031</b>Over 100 customers, and road data for insurers and map apps.</li>
+          </ul>
+        </div>
+        <figure class="rev-chart">
+          <figcaption>Revenue per year</figcaption>
+          <svg viewBox="0 0 720 420" data-rev-chart role="img" aria-label="Revenue grows from €40k in 2027 to €3.32m in 2031. Break-even in 2030."></svg>
+          <p class="small">Estimates. They change once the pilot gives us real numbers.</p>
+        </figure>
+      </div>
+      <aside class="notes">Only if asked: the market is 714,000 km of municipal roads in Germany, about €54m a year at our price. Saxony alone is €2.8m.</aside>
+    </section>
+
+    <!-- 12. Ask -->
+    <section class="slide close" data-title="Our ask" aria-label="Our ask">
+      <div class="close-grid">
+        <div>
+          <p class="eyebrow">What we're looking for</p>
+          <h2>A pilot district in Dresden and a fleet partner.</h2>
+          <p class="lead">Let the city see its roads every week, before the next complaint instead of after it.</p>
+        </div>
+        <div class="close-sign">
+          <p>So whether you drive or take the bus, your next coffee stays in the cup.</p>
+          <p class="brand-line">
+            <svg viewBox="0 0 42 18" aria-hidden="true"><path d="M2 12c3-9 6-9 8 0s5 9 8 0 4-1 6-1h16" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg>
+            Holperfrei
+          </p>
+          <p class="sign-off">We find potholes before you do.</p>
+        </div>
+      </div>
+      <aside class="notes">Close on the coffee. Then stop talking.</aside>
+    </section>
+
+    <nav class="deck-ui" aria-label="Slides">
+      <button type="button" class="nav-btn" data-prev aria-label="Previous slide">←</button>
+      <ol class="progress" data-progress></ol>
+      <span class="count" data-count>1 / 12</span>
+      <button type="button" class="nav-btn" data-next aria-label="Next slide">→</button>
+      <button type="button" class="nav-btn wide" data-notes-toggle aria-pressed="false">Notes</button>
+    </nav>
+    <div class="notes-panel" data-notes-panel hidden></div>
+  </main>
+
+  <script src="js/map-data.js"></script>
+  <script src="js/site.js"></script>
+  <script src="js/pitch.js"></script>
+</body>
+</html>
